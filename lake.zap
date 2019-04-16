@@ -1,0 +1,1351 @@
+
+	.SEGMENT "LAKE"
+
+
+	.FUNCT	WEST-SHORE-F,RARG
+	EQUAL?	RARG,M-LOOK \FALSE
+	PRINTI	"What's a castle without a lake? Dimwit loved lakes, but hated to go outside, so he had one constructed in his extensive cellars. Once a lovely lake, teeming with life, its waters have grown stagnant. The scummy surface stretches off to the east, and a tunnel leads west."
+	RTRUE	
+
+
+	.FUNCT	NORTH-SHORE-F,RARG
+	EQUAL?	RARG,M-LOOK \FALSE
+	PRINTI	"Stretching off to the south is an impressive sight: a large lake, completely contained within the castle. A red dock protrudes into the lake"
+	IN?	YACHT,HERE \?CND4
+	PRINT	YACHT-MOORED
+?CND4:	PRINTI	". Tunnels lead north and northeast."
+	RTRUE	
+
+
+	.FUNCT	EAST-SHORE-F,RARG
+	EQUAL?	RARG,M-LOOK \FALSE
+	PRINTI	"A narrow beach lies between the lake, to the west, and a tall mountain, to the east. It's hard to remember that you're still within the castle. A blue dock juts out into the lake"
+	IN?	YACHT,HERE \?CND4
+	PRINT	YACHT-MOORED
+?CND4:	PRINTC	46
+	RTRUE	
+
+
+	.FUNCT	SOUTH-SHORE-F,RARG
+	EQUAL?	RARG,M-LOOK \?CCL3
+	PRINTI	"The sandy beach on the south side of the lake is very wide -- in fact, it simply blends into a wide desert to the south. To the north, a green dock extends into the lake"
+	IN?	YACHT,HERE \?CND4
+	PRINT	YACHT-MOORED
+?CND4:	PRINTI	". The shore curves around toward the west."
+	RTRUE	
+?CCL3:	EQUAL?	RARG,M-END \FALSE
+	IN?	PROTAGONIST,CAMEL \FALSE
+	FSET?	CAMEL,TOUCHBIT /FALSE
+	ZERO?	CAMEL-THIRSTY /FALSE
+	FSET	CAMEL,TOUCHBIT
+	ICALL1	RETURN-FROM-MAP
+	PRINTR	"   The camel takes one look at the scummy water and wheezes mournfully through parched lips."
+
+
+	.FUNCT	DOCK-F,VARG
+	EQUAL?	PRSA,V?ENTER \FALSE
+	IN?	BEDBUG,HERE \FALSE
+	ZERO?	TIME-STOPPED \FALSE
+	CALL2	DO-WALK,P?NORTH
+	RSTACK	
+
+
+	.FUNCT	YACHT-F,VARG
+	ZERO?	VARG /?CCL3
+	EQUAL?	VARG,M-ENTER \FALSE
+	FSET?	PRSO,TOUCHBIT \?CCL8
+	SET	'COMPASS-CHANGED,TRUE-VALUE
+	RFALSE	
+?CCL8:	SET	'COMPASS-CHANGED,TRUE-VALUE
+	PRINTR	" The controls seem worthy of closer examination. A gangway leads belowdecks."
+?CCL3:	EQUAL?	PRSA,V?ENTER \?CCL10
+	IN?	PROTAGONIST,HERE \?CCL10
+	PRINTR	"You can only board the yacht from the dock."
+?CCL10:	EQUAL?	PRSA,V?EXIT \?CCL14
+	EQUAL?	HERE,LAKE-FLATHEAD \?CND15
+	ICALL	PERFORM,V?ENTER,LAKE-FLATHEAD
+	RTRUE	
+?CND15:	EQUAL?	HERE,WEST-SHORE \?CCL19
+	PUSH	WEST-DOCK
+	JUMP	?CND17
+?CCL19:	EQUAL?	HERE,NORTH-SHORE \?CCL21
+	PUSH	NORTH-DOCK
+	JUMP	?CND17
+?CCL21:	EQUAL?	HERE,EAST-SHORE \?CCL23
+	PUSH	EAST-DOCK
+	JUMP	?CND17
+?CCL23:	PUSH	SOUTH-DOCK
+?CND17:	MOVE	PROTAGONIST,STACK
+	SET	'OLD-HERE,FALSE-VALUE
+	SET	'COMPASS-CHANGED,TRUE-VALUE
+	PRINTI	"You step off the boat, onto the dock."
+	CRLF	
+	EQUAL?	VERBOSITY,1 \?CCL26
+	CRLF	
+	ICALL1	SAY-HERE
+	CRLF	
+	RTRUE	
+?CCL26:	EQUAL?	VERBOSITY,2 \TRUE
+	CRLF	
+	ICALL1	V-LOOK
+	RTRUE	
+?CCL14:	EQUAL?	PRSA,V?SINK \?CCL29
+	SET	'AWAITING-REPLY,1
+	ICALL	QUEUE,I-REPLY,2
+	PRINTR	"You have a torpedo, maybe?"
+?CCL29:	EQUAL?	PRSA,V?SET \?CCL31
+	EQUAL?	P-PRSA-WORD,W?STEER \?CCL31
+	PRINTR	"There's no wheel."
+?CCL31:	EQUAL?	PRSA,V?THROW-FROM \FALSE
+	EQUAL?	PRSI,YACHT \FALSE
+	ICALL	PERFORM,V?PUT,PRSO,WATER
+	RTRUE	
+
+
+	.FUNCT	YACHT-CONTROLS-F
+	EQUAL?	PRSA,V?EXAMINE \FALSE
+	PRINTR	"The controls are quite simple, consisting of a small brass plaque and an ornate compass rose. There are buttons on the four cardinal points of the rose: a red button at the north point, blue at the east, green south, and yellow west. A fifth button, white, is at the center of the rose."
+
+
+	.FUNCT	YACHT-BUTTON-F
+	EQUAL?	PRSA,V?PUSH \FALSE
+	FSET?	OUTER-GATE,OPENBIT /?CTR5
+	ZERO?	TIME-STOPPED /?CCL6
+?CTR5:	PRINT	NOTHING-HAPPENS
+	RTRUE	
+?CCL6:	FSET?	SEAMANS-CAP,WORNBIT /?CCL10
+	PRINTI	"You meet an invisible resistance. A peal of laughter from behind turns out to be the jester. ""The button may seem like a demon, telling landlubber from seaman; but the truth's not so queer -- you need nautical gear!"""
+	ICALL1	J-EXITS
+	RTRUE	
+?CCL10:	EQUAL?	PRSO,WHITE-BUTTON \?CCL12
+	EQUAL?	HERE,LAKE-FLATHEAD \?CCL15
+	ICALL2	DEQUEUE,I-YACHT
+	PRINT	NOTHING-HAPPENS
+	RTRUE	
+?CCL15:	SET	'YACHT-DESTINATION,LAKE-FLATHEAD
+	ICALL2	I-YACHT,TRUE-VALUE
+	RTRUE	
+?CCL12:	IN?	DB,HOLD /?CCL17
+	PRINTR	"A message flashes: ""Warning -- diving bell lowered!"""
+?CCL17:	EQUAL?	PRSO,RED-BUTTON \?CCL19
+	EQUAL?	HERE,NORTH-SHORE \?CCL22
+	PRINT	NOTHING-HAPPENS
+	RTRUE	
+?CCL22:	SET	'YACHT-DESTINATION,NORTH-SHORE
+	ICALL2	I-YACHT,TRUE-VALUE
+	RTRUE	
+?CCL19:	EQUAL?	PRSO,GREEN-BUTTON \?CCL24
+	EQUAL?	HERE,SOUTH-SHORE \?CCL27
+	PRINT	NOTHING-HAPPENS
+	RTRUE	
+?CCL27:	SET	'YACHT-DESTINATION,SOUTH-SHORE
+	ICALL2	I-YACHT,TRUE-VALUE
+	RTRUE	
+?CCL24:	EQUAL?	PRSO,BLUE-BUTTON \?CCL29
+	EQUAL?	HERE,EAST-SHORE \?CCL32
+	PRINT	NOTHING-HAPPENS
+	RTRUE	
+?CCL32:	SET	'YACHT-DESTINATION,EAST-SHORE
+	ICALL2	I-YACHT,TRUE-VALUE
+	RTRUE	
+?CCL29:	EQUAL?	HERE,WEST-SHORE \?CCL35
+	PRINT	NOTHING-HAPPENS
+	RTRUE	
+?CCL35:	SET	'YACHT-DESTINATION,WEST-SHORE
+	ICALL2	I-YACHT,TRUE-VALUE
+	RTRUE	
+
+
+	.FUNCT	I-YACHT,CALLED-BY-BUTTON-F
+	ZERO?	CALLED-BY-BUTTON-F /?CND1
+	ICALL	QUEUE,I-YACHT,2
+	EQUAL?	HERE,LAKE-FLATHEAD \?CCL5
+	EQUAL?	YACHT-DESTINATION,LAKE-FLATHEAD /?CCL5
+	PRINTI	"The boat heads for the "
+	ICALL2	DPRINT,YACHT-DESTINATION
+	PRINT	PERIOD-CR
+	JUMP	?CND1
+?CCL5:	PRINTI	"The yacht moves away from the dock, toward the middle of the lake."
+	CRLF	
+	CRLF	
+?CND1:	IN?	YACHT,LAKE-FLATHEAD \?CCL10
+	MOVE	YACHT,YACHT-DESTINATION
+	ICALL1	RETURN-FROM-MAP
+	IN?	PROTAGONIST,YACHT \?CND8
+	PRINTI	"   The yacht reaches the "
+	ICALL2	DPRINT,YACHT-DESTINATION
+	PRINTI	" and docks magically."
+	CRLF	
+	CRLF	
+	ICALL2	GOTO,YACHT
+	JUMP	?CND8
+?CCL10:	MOVE	YACHT,LAKE-FLATHEAD
+	IN?	PROTAGONIST,YACHT \?CND8
+	ICALL1	RETURN-FROM-MAP
+	ICALL2	GOTO,YACHT
+	PRINTI	"   The boat reaches the middle of the lake"
+	EQUAL?	YACHT-DESTINATION,LAKE-FLATHEAD \?CCL17
+	PRINTI	", slows, and stops"
+	JUMP	?CND15
+?CCL17:	PRINTI	" and heads straight for the dock on the "
+	ICALL2	DPRINT,YACHT-DESTINATION
+?CND15:	PRINT	PERIOD-CR
+?CND8:	IN?	YACHT,YACHT-DESTINATION \TRUE
+	ICALL2	DEQUEUE,I-YACHT
+	RTRUE	
+
+
+	.FUNCT	YACHT-ENTER-F,RARG
+	ZERO?	RARG \FALSE
+	ICALL2	GOTO,YACHT
+	RFALSE	
+
+
+	.FUNCT	DB-ENTER-F,RARG
+	ZERO?	RARG \FALSE
+	FSET?	DB,OPENBIT \?CCL5
+	ICALL	PERFORM,V?ENTER,DB
+	RFALSE	
+?CCL5:	ICALL1	RETURN-FROM-MAP
+	ICALL2	THIS-IS-IT,DB
+	ICALL2	DO-FIRST,STR?566
+	RFALSE	
+
+
+	.FUNCT	DB-F,VARG
+	ZERO?	VARG /?CCL3
+	EQUAL?	VARG,M-ENTER \FALSE
+?CCL3:	ZERO?	VARG /?CCL7
+	ZERO?	DB-CONTROLS-DESCRIBED \FALSE
+	SET	'DB-CONTROLS-DESCRIBED,TRUE-VALUE
+	PRINTC	32
+	ICALL	PERFORM,V?EXAMINE,DB
+	RTRUE	
+?CCL7:	EQUAL?	PRSA,V?EXAMINE \?CCL12
+	IN?	PROTAGONIST,DB \?CCL15
+	PRINTI	"This is a cramped diving bell. The door is "
+	ICALL2	OPEN-CLOSED,DB
+	PRINTR	". A brass plaque is mounted next to a small porthole. You may want to examine the controls."
+?CCL15:	PRINTI	"The diving bell is "
+	ICALL2	OPEN-CLOSED,DB
+	PRINTR	". Mounted on the outside of it is a claw-like waldo."
+?CCL12:	EQUAL?	PRSA,V?ENTER \?CCL17
+	IN?	PROTAGONIST,DB /?CCL17
+	FSET?	DB,OPENBIT /?CCL17
+	CALL2	DO-WALK,P?IN
+	RSTACK	
+?CCL17:	EQUAL?	PRSA,V?EXIT \?CCL22
+	IN?	PROTAGONIST,DB \?CCL22
+	ZERO?	HAND-IN-WALDO /?CCL27
+	CALL2	DO-FIRST,STR?567
+	RSTACK	
+?CCL27:	FSET?	DB,OPENBIT /?CCL29
+	ICALL2	THIS-IS-IT,DB
+	CALL2	DO-FIRST,STR?566
+	RSTACK	
+?CCL29:	IN?	RUBY,WALDO \FALSE
+	FCLEAR	RUBY,TRYTAKEBIT
+	RFALSE	
+?CCL22:	EQUAL?	PRSA,V?LOWER,V?RAISE \?CCL33
+	IN?	PROTAGONIST,DB \?CCL36
+	PRINT	YOULL-HAVE-TO
+	PRINTR	"use the controls."
+?CCL36:	PRINTR	"You can't do that from out here."
+?CCL33:	EQUAL?	PRSA,V?OPEN \FALSE
+	EQUAL?	HERE,HOLD /FALSE
+	CALL2	JIGS-UP,STR?568
+	RSTACK	
+
+
+	.FUNCT	DB-CONTROLS-F
+	EQUAL?	PRSA,V?EXAMINE \FALSE
+	PRINTR	"The controls seem simple enough: an up-down lever, an exterior light, and a hand-hole for controlling the exterior waldo."
+
+
+	.FUNCT	G-DB-HOLE-F,TBL,F
+	GET	F,6
+	EQUAL?	STACK,W?CONTROL \?CCL3
+	RETURN	DB-CONTROLS
+?CCL3:	RETURN	HAND-HOLE
+
+
+	.FUNCT	PORTHOLE-F
+	EQUAL?	PRSA,V?LOOK-INSIDE \FALSE
+	CALL1	V-LOOK
+	RSTACK	
+
+
+	.FUNCT	WALDO-F
+	FSET?	EXTERIOR-LIGHT,ONBIT /?CCL3
+	EQUAL?	HERE,HOLD /?CCL3
+	CALL2	HANDLE,WALDO
+	ZERO?	STACK /?CCL3
+	CALL2	CANT-SEE,WALDO
+	RSTACK	
+?CCL3:	EQUAL?	PRSA,V?REACH-IN \?CCL8
+	IN?	PROTAGONIST,DB \?CCL8
+	ICALL	PERFORM,V?REACH-IN,HAND-HOLE
+	RTRUE	
+?CCL8:	EQUAL?	PRSA,V?DROP \?CCL12
+	PRINTR	"Although you can manipulate the waldo, you aren't holding it. [If you want to remove your hand, try REMOVE HAND.]"
+?CCL12:	EQUAL?	PRSA,V?PUT \?CCL14
+	MOVE	PRSO,HERE
+	PRINT	YOU-CANT
+	PRINTI	"budge the waldo's claw, so"
+	ICALL1	TPRINT-PRSO
+	PRINTR	" falls right out."
+?CCL14:	EQUAL?	PRSA,V?CLOSE,V?OPEN \?CCL16
+	ZERO?	HAND-IN-WALDO /?CCL19
+	FIRST?	WALDO \?CCL22
+	EQUAL?	PRSA,V?OPEN \?CCL25
+	FIRST?	WALDO /?BOGUS26
+?BOGUS26:	ICALL	PERFORM,V?DROP,STACK
+	RTRUE	
+?CCL25:	PRINTI	"The waldo IS closed! It's holding"
+	FIRST?	WALDO /?BOGUS27
+?BOGUS27:	CALL2	ARPRINT,STACK
+	RSTACK	
+?CCL22:	PRINTR	"The claws of the waldo open and close."
+?CCL19:	PRINTR	"The claws of the waldo won't budge."
+?CCL16:	EQUAL?	PRSA,V?TAKE-WITH \FALSE
+	EQUAL?	PRSI,WALDO \FALSE
+	EQUAL?	PRSO,WALDO,DB \?CCL34
+	CALL1	IMPOSSIBLES
+	RSTACK	
+?CCL34:	ZERO?	HAND-IN-WALDO /?CCL36
+	SET	'PRSI,FALSE-VALUE
+	ICALL	PERFORM,V?TAKE,PRSO
+	RTRUE	
+?CCL36:	PRINTR	"Your hand isn't in the hand-hole!"
+
+
+	.FUNCT	HAND-HOLE-F
+	IN?	PROTAGONIST,DB /?CCL3
+	CALL2	CANT-REACH,HAND-HOLE
+	RSTACK	
+?CCL3:	EQUAL?	PRSA,V?REACH-IN \?CCL5
+	PRINTI	"Your hand is "
+	ZERO?	HAND-IN-WALDO /?CCL8
+	PRINTR	"already in the hand-hole!"
+?CCL8:	SET	'HAND-IN-WALDO,TRUE-VALUE
+	PRINTI	"now in the hand-hole"
+	FSET?	WALDO,TOUCHBIT /?CND9
+	FSET	WALDO,TOUCHBIT
+	PRINTI	". The waldo feels like an extension of your own hand. You flex your fingers a few times"
+	FSET?	EXTERIOR-LIGHT,ONBIT /?CCL12
+	EQUAL?	HERE,HOLD \?CND9
+?CCL12:	PRINTI	", and through the viewport, you see the waldo flex correspondingly"
+?CND9:	PRINT	PERIOD-CR
+	RTRUE	
+?CCL5:	EQUAL?	PRSA,V?LOOK-INSIDE \FALSE
+	ZERO?	HAND-IN-WALDO /?CCL19
+	PRINTR	"Your hand is in the hole."
+?CCL19:	PRINT	ONLY-BLACKNESS
+	RTRUE	
+
+
+	.FUNCT	WALDO-TAKE
+	EQUAL?	PRSI,WALDO \?CCL3
+	EQUAL?	P-PRSA-WORD,W?REMOVE \?CCL6
+	ICALL	PERFORM,V?DROP,PRSO
+	RTRUE	
+?CCL6:	CALL2	CANT-REACH,PRSO
+	RSTACK	
+?CCL3:	FIRST?	WALDO \?CCL8
+	PRINTI	"There's already"
+	FIRST?	WALDO /?BOGUS9
+?BOGUS9:	ICALL2	APRINT,STACK
+	PRINTR	" in the waldo."
+?CCL8:	EQUAL?	HERE,LAKE-BOTTOM \?CCL11
+	IN?	SQUID-REPELLENT,LAKE-BOTTOM /?CCL11
+	PRINTI	"Before the waldo can grab"
+	ICALL1	TPRINT-PRSO
+	PRINTI	", a baby squid swims into view and snatches"
+	ICALL1	TPRINT-PRSO
+	PRINTI	". The squid playfully squirts black ink toward the porthole, and by the time the view clears, the squid is gone"
+	FSET?	PRSO,TAKEBIT \?CND14
+	PRINTI	" and"
+	ICALL1	TPRINT-PRSO
+	PRINTI	" is lying right where it was before"
+?CND14:	PRINT	PERIOD-CR
+	RTRUE	
+?CCL11:	FSET?	PRSO,TAKEBIT \?CCL17
+	MOVE	PRSO,WALDO
+	FSET	PRSO,TOUCHBIT
+	PRINTI	"You pick up"
+	ICALL1	TPRINT-PRSO
+	PRINTR	" in the waldo."
+?CCL17:	EQUAL?	PRSO,SPENSEWEED \?CCL19
+	PRINT	DEEPLY-ROOTED
+	RTRUE	
+?CCL19:	EQUAL?	PRSO,J-POCKET,J-HAT,JESTER /?CTR20
+	EQUAL?	PRSO,J-SHOE \?CCL21
+?CTR20:	PRINTR	"Your attempt ends up giving the jester a pinch with the waldo. ""Please!"" he exclaims. ""I'm not that sort of jester!"""
+?CCL21:	CALL1	YUKS
+	RSTACK	
+
+
+	.FUNCT	LEVER-F,X
+	EQUAL?	PRSA,V?EXAMINE \?CCL3
+	PRINTI	"The lever is in the "
+	EQUAL?	DB-DIRECTION,1 \?CCL6
+	PRINTI	"up"
+	JUMP	?CND4
+?CCL6:	EQUAL?	DB-DIRECTION,-1 \?CCL8
+	PRINTI	"down"
+	JUMP	?CND4
+?CCL8:	PRINTI	"neutral"
+?CND4:	PRINTI	" position"
+	ZERO?	DB-DIRECTION \?CCL11
+	PRINTR	", from which it can be raised or lowered."
+?CCL11:	PRINT	PERIOD-CR
+	RTRUE	
+?CCL3:	EQUAL?	PRSA,V?RAISE \?CCL13
+	EQUAL?	DB-DIRECTION,1 \?CCL16
+	PRINTR	"The lever is already raised."
+?CCL16:	EQUAL?	HERE,HOLD \?CCL18
+	PRINT	NOTHING-HAPPENS
+	RTRUE	
+?CCL18:	SET	'DB-DIRECTION,1
+	ICALL	QUEUE,I-DB,2
+	PRINTI	"The bathysphere ascends."
+	EQUAL?	HERE,LAKE-BOTTOM \?CCL21
+	SET	'DB-DEPTH,4
+	MOVE	DB,UNDERWATER
+	MOVE	WALDO,UNDERWATER
+	CALL1	GLANCE
+	RSTACK	
+?CCL21:	CRLF	
+	RTRUE	
+?CCL13:	EQUAL?	PRSA,V?LOWER \FALSE
+	EQUAL?	DB-DIRECTION,-1 \?CCL26
+	PRINTR	"The lever is already lowered."
+?CCL26:	EQUAL?	DB-DEPTH,4 /?CTR27
+	IN?	YACHT,LAKE-FLATHEAD /?CCL28
+?CTR27:	PRINT	NOTHING-HAPPENS
+	RTRUE	
+?CCL28:	FIRST?	WALDO >X \?CCL32
+	EQUAL?	X,FOX,FLAMINGO,ROOSTER /?CTR31
+	EQUAL?	X,SNAKE \?CCL32
+?CTR31:	PRINTI	"You'd drown the poor "
+	PRINTD	X
+	PRINTR	"!"
+?CCL32:	FSET?	DB,OPENBIT \?CCL38
+	CALL2	JIGS-UP,STR?573
+	RSTACK	
+?CCL38:	SET	'DB-DIRECTION,-1
+	ICALL	QUEUE,I-DB,2
+	PRINTI	"The bathysphere descends into the waters of the lake"
+	CALL	FIND-IN,WALDO,FLAMEBIT >X
+	ZERO?	X /?CND39
+	FCLEAR	X,ONBIT
+	FCLEAR	X,FLAMEBIT
+	CALL2	VISIBLE?,X
+	ZERO?	STACK /?CND39
+	PRINTI	", extinguishing"
+	ICALL2	TPRINT,X
+?CND39:	PRINTC	46
+	EQUAL?	HERE,HOLD \?CCL45
+	SET	'DB-DEPTH,0
+	MOVE	DB,UNDERWATER
+	MOVE	WALDO,UNDERWATER
+	CALL1	GLANCE
+	RSTACK	
+?CCL45:	CRLF	
+	RTRUE	
+
+
+	.FUNCT	GLANCE
+	PRINTI	" You glance out the porthole"
+	PRINT	ELLIPSIS
+	CALL2	GOTO,DB
+	RSTACK	
+
+
+	.FUNCT	I-DB
+	ICALL	QUEUE,I-DB,-1
+	SUB	DB-DEPTH,DB-DIRECTION >DB-DEPTH
+	IN?	PROTAGONIST,DB \?CND1
+	ICALL1	RETURN-FROM-MAP
+	PRINTI	"   The bathysphere "
+?CND1:	LESS?	DB-DEPTH,1 \?CCL5
+	ICALL2	DEQUEUE,I-DB
+	SET	'DB-DIRECTION,0
+	MOVE	DB,HOLD
+	MOVE	WALDO,HOLD
+	IN?	PROTAGONIST,DB \?CCL8
+	PRINTI	"rises into the yacht's hold and stops."
+	ICALL1	GLANCE
+	RTRUE	
+?CCL8:	EQUAL?	HERE,HOLD \FALSE
+	ICALL1	RETURN-FROM-MAP
+	PRINTR	"   A diving bell rises into the Hold."
+?CCL5:	GRTR?	DB-DEPTH,3 \?CCL12
+	ICALL2	DEQUEUE,I-DB
+	SET	'DB-DIRECTION,0
+	MOVE	DB,LAKE-BOTTOM
+	MOVE	WALDO,LAKE-BOTTOM
+	IN?	PROTAGONIST,DB \FALSE
+	PRINTI	"bumps against the bottom of the lake."
+	ICALL1	GLANCE
+	RTRUE	
+?CCL12:	IN?	PROTAGONIST,DB \FALSE
+	PRINTI	"continues to "
+	EQUAL?	DB-DIRECTION,-1 \?CCL20
+	PRINTI	"de"
+	JUMP	?CND18
+?CCL20:	EQUAL?	DB-DIRECTION,1 \?CND18
+	PRINTC	97
+?CND18:	PRINTI	"scend."
+	CRLF	
+	GRTR?	PIECE-DROWNED,0 \TRUE
+	RANDOM	100
+	LESS?	PIECE-DROWNED,STACK /?CCL26
+	SET	'PIECE-DROWNED,1
+	PRINTR	"   The drowned carcass of a chess piece drifts momentarily through the beam of the exterior light."
+?CCL26:	ADD	PIECE-DROWNED,10 >PIECE-DROWNED
+	RTRUE	
+
+
+	.FUNCT	LAKE-FLATHEAD-F,RARG
+	ZERO?	RARG \FALSE
+	EQUAL?	PRSA,V?ENTER,V?DRINK-FROM,V?DRINK /?CTR4
+	EQUAL?	PRSA,V?REACH-IN,V?LOOK-UNDER \?CCL5
+?CTR4:	CALL	PERFORM-PRSA,WATER,PRSI
+	RSTACK	
+?CCL5:	EQUAL?	PRSA,V?PUT,V?FILL \?CCL9
+	EQUAL?	PRSI,GLOBAL-HERE \?CCL9
+	CALL	PERFORM-PRSA,PRSO,WATER
+	RSTACK	
+?CCL9:	EQUAL?	PRSA,V?LOOK-INSIDE,V?EXAMINE \FALSE
+	PRINTR	"The water is scummy and murky."
+
+
+	.FUNCT	LAKE-BOTTOM-F,RARG
+	EQUAL?	RARG,M-ENTER \?CCL3
+	MOVE	SPENSEWEED,HERE
+	FSET	SPENSEWEED,NDESCBIT
+	RTRUE	
+?CCL3:	EQUAL?	RARG,M-END \FALSE
+	IN?	WORM,WALDO \FALSE
+	REMOVE	WORM
+	ICALL1	RETURN-FROM-MAP
+	PRINTR	"   A fish snatches the worm from the waldo and swims away with it."
+
+
+	.FUNCT	LAKE-BOTTOM-FISH-F
+	CALL2	TOUCHING?,LAKE-BOTTOM-FISH
+	ZERO?	STACK /FALSE
+	CALL2	CANT-REACH,LAKE-BOTTOM-FISH
+	RSTACK	
+
+
+	.FUNCT	G-U-MOUNTAIN-ENTER-F,RARG
+	IN?	PROTAGONIST,CAMEL \?CCL3
+	ZERO?	RARG \FALSE
+	ICALL1	RETURN-FROM-MAP
+	PRINTI	"Like most camels, this one isn't very good at mountain climbing."
+	CRLF	
+	RFALSE	
+?CCL3:	RETURN	G-U-MOUNTAIN
+
+
+	.FUNCT	STABLE-F,RARG
+	EQUAL?	RARG,M-ENTER \FALSE
+	FSET?	STABLE,TOUCHBIT /FALSE
+	CALL	QUEUE,I-ROOSTER,-1
+	RSTACK	
+
+
+	.FUNCT	STALL-PS
+	EQUAL?	PRSA,V?ENTER,V?EXAMINE \FALSE
+	PRINTR	"The stalls are all empty."
+
+	.SEGMENT "0"
+
+
+	.FUNCT	SADDLE-F
+	EQUAL?	PRSA,V?PUT-ON \FALSE
+	EQUAL?	PRSO,SADDLE \FALSE
+	PRINTI	"You'd be kicked out of riding school -- imagine, trying to saddle"
+	ICALL2	APRINT,PRSI
+	PRINTR	"!"
+
+
+	.FUNCT	ROOSTER-F
+	EQUAL?	PRSA,V?RESEARCH \?CCL3
+	CALL	NOUN-USED?,ROOSTER,W?ROOSTER
+	ZERO?	STACK /?CCL3
+	PRINTR	"""A common barnyard animal."""
+?CCL3:	FSET?	ROOSTER,ANIMATEDBIT \FALSE
+	EQUAL?	PRSA,V?EAT \?CCL9
+	EQUAL?	TURNED-INTO,FOX \?CCL12
+	CALL2	GOOD-MEAL,ROOSTER
+	RSTACK	
+?CCL12:	PRINTR	"Unfortunately, you have no training in the butchering and culinary techniques involved in turning live poultry into edible meals."
+?CCL9:	EQUAL?	PRSA,V?EXAMINE \?CCL14
+	PRINTR	"It is a handsome, mature rooster, with a full red comb."
+?CCL14:	EQUAL?	PRSA,V?TOUCH \?CCL16
+	PRINTR	"The bird pecks at your hand."
+?CCL16:	EQUAL?	PRSA,V?TAKE \?CCL18
+	FSET?	ROOSTER,ANIMATEDBIT \?CCL18
+	CALL2	ITAKE,TRUE-VALUE
+	EQUAL?	STACK,M-FATAL /TRUE
+	MOVE	ROOSTER,PROTAGONIST
+	PRINTR	"The bird flaps angrily, but you manage to pick it up."
+?CCL18:	EQUAL?	PRSA,V?GIVE \?CCL25
+	EQUAL?	PRSO,WORM \?CCL25
+	REMOVE	WORM
+	PRINTR	"The bird sucks down the worm and crows happily."
+?CCL25:	EQUAL?	PRSA,V?FEED \FALSE
+	CALL2	ULTIMATELY-IN?,WORM
+	ZERO?	STACK /FALSE
+	CALL	WOULDNT-MIND,ROOSTER,WORM
+	RSTACK	
+
+
+	.FUNCT	I-W-ROOSTER,L
+	LOC	ROOSTER >L
+	FSET	ROOSTER,ANIMATEDBIT
+	IN?	ROOSTER,LAKE-BOTTOM \?CCL3
+	REMOVE	ROOSTER
+	RTRUE	
+?CCL3:	CALL2	META-LOC,ROOSTER
+	EQUAL?	STACK,HERE \?CCL5
+	ICALL1	RETURN-FROM-MAP
+	PRINTI	"   The air is split by a loud ""Cock-a-doodle-doo!"" as the weather vane once again becomes a rooster"
+	EQUAL?	L,PROTAGONIST,HERE /?CND6
+	FSET?	L,DROPBIT /?CND6
+	MOVE	ROOSTER,HERE
+	FSET	L,OPENBIT
+	PRINTI	" and pops out of"
+	ICALL2	TPRINT,L
+?CND6:	PRINT	PERIOD-CR
+	RTRUE	
+?CCL5:	CALL2	META-LOC,ROOSTER
+	MOVE	ROOSTER,STACK
+	RFALSE	
+
+
+	.FUNCT	I-ROOSTER,L
+	FSET?	ROOSTER,ANIMATEDBIT \FALSE
+	CALL2	VISIBLE?,ROOSTER
+	ZERO?	STACK \?CCL5
+	LOC	ROOSTER >L
+	ZERO?	L /FALSE
+	LOC	WORM
+	EQUAL?	L,STACK \FALSE
+	FSET?	WORM,ANIMATEDBIT \FALSE
+	FSET?	L,ACTORBIT /FALSE
+	SET	'ROOSTER-BURP,TRUE-VALUE
+	REMOVE	WORM
+	RFALSE	
+?CCL5:	ZERO?	ROOSTER-BURP /?CCL13
+	SET	'ROOSTER-BURP,FALSE-VALUE
+	ICALL1	RETURN-FROM-MAP
+	PRINTR	"   The rooster fails to hide a satisfied burp."
+?CCL13:	CALL2	VISIBLE?,WORM
+	ZERO?	STACK /FALSE
+	FSET?	WORM,ANIMATEDBIT \FALSE
+	RANDOM	100
+	LESS?	ROOSTER-PROB,STACK /?CCL19
+	ICALL1	RETURN-FROM-MAP
+	SET	'ROOSTER-PROB,0
+	PRINTR	"   The rooster hungrily eyes the worm."
+?CCL19:	ADD	ROOSTER-PROB,10 >ROOSTER-PROB
+	RFALSE	
+
+	.ENDSEG
+
+	.SEGMENT "LAKE"
+
+
+	.FUNCT	G-U-MOUNTAIN-F,RARG
+	EQUAL?	RARG,M-ENTER \?CCL3
+	GRTR?	ORACLE-EXIT-NUMBER,4 \?CCL3
+	RANDOM	5
+	SUB	STACK,1 >ORACLE-EXIT-NUMBER
+	CALL	QUEUE,I-AMULET,4
+	RSTACK	
+?CCL3:	EQUAL?	RARG,M-LOOK \FALSE
+	PRINTI	"The mountain crests with a tiny plateau. The view is inspiring; it's easy to see why Dimwit climbed this mountain with such frequency. (Some quibblers insisted that it's hardly ""mountain climbing"" to be carried up in a plush sedan chair, but those quibblers were all tortured to death years ago.) Off to the west are the placid waters of Lake Flathead; to the southwest is a vast indoor desert; to the south spreads a verdant forest. The ceiling of the castle is just a few feet above your head. "
+	IN?	BOULDER,HERE \?CCL10
+	PRINTI	"An enormous boulder is balanced precariously at the western edge of the plateau"
+	JUMP	?CND8
+?CCL10:	PRINTI	"A small cave opens to the north"
+?CND8:	PRINTI	". A trail leads down the mountain to the west."
+	RTRUE	
+
+
+	.FUNCT	CAVE-ENTER-F,RARG
+	IN?	BOULDER,HERE \?CCL3
+	ZERO?	RARG \FALSE
+	ICALL1	CANT-GO
+	RFALSE	
+?CCL3:	RETURN	GROTTO
+
+
+	.FUNCT	BOULDER-F
+	EQUAL?	PRSA,V?KICK,V?MOVE,V?PUSH /?CTR2
+	EQUAL?	PRSA,V?ROLL \?CCL3
+?CTR2:	REMOVE	BOULDER
+	SET	'COMPASS-CHANGED,TRUE-VALUE
+	MOVE	CAVE-OBJECT,HERE
+	PRINTI	"You give the boulder a shove. It lurches and begins careening down the mountain. Picking up speed, it flattens several trees, hits an outcropping, and shoots into the air, toward the lake. It lands "
+	IN?	YACHT,EAST-SHORE \?CCL8
+	PRINTI	"right on the yacht"
+	JUMP	?CND6
+?CCL8:	PRINTI	"in the lake with a tremendous splash, just missing the blue dock"
+?CND6:	PRINTI	"! The rock "
+	IN?	YACHT,EAST-SHORE \?CCL11
+	REMOVE	YACHT
+	CALL	ULTIMATELY-IN?,PERCH,YACHT
+	ZERO?	STACK \?CCL13
+	CALL	ULTIMATELY-IN?,PERCH,HOLD
+	ZERO?	STACK /?CND12
+?CCL13:	SET	'REMOVED-PERCH-LOC,WATER
+	REMOVE	PERCH
+?CND12:	PRINTI	"and the yacht vanish"
+	JUMP	?CND9
+?CCL11:	PRINTI	"disappears"
+?CND9:	PRINTI	" beneath the water, leaving only a series of widening ripples. As you recuperate from the excitement, you notice a feature that was formerly blocked by the boulder: a small cave leading north into the mountain."
+	CRLF	
+	CALL2	INC-SCORE,6
+	RSTACK	
+?CCL3:	EQUAL?	PRSA,V?LOWER \?CCL17
+	EQUAL?	P-PRSA-WORD,W?PUSH \?CCL17
+	ICALL	PERFORM,V?PUSH,BOULDER
+	RTRUE	
+?CCL17:	EQUAL?	PRSA,V?PUSH-DIR \FALSE
+	EQUAL?	PRSI,INTDIR \FALSE
+	CALL	NOUN-USED?,INTDIR,W?WEST
+	ZERO?	STACK /FALSE
+	ICALL	PERFORM,V?PUSH,BOULDER
+	RTRUE	
+
+
+	.FUNCT	CAVE-OBJECT-F
+	EQUAL?	PRSA,V?ENTER \FALSE
+	CALL2	GOTO,GROTTO
+	RSTACK	
+
+
+	.FUNCT	LOWEST-HALL-ENTER-F,RARG,CURRENT-GRAVEL,SPILL
+	ZERO?	RARG /?CND1
+	RETURN	LOWEST-HALL
+?CND1:	ICALL1	RETURN-FROM-MAP
+	PRINTI	"You lose your footing on the gravel, drop your possessions, and begin sliding down the dark tunnel! Finally, you land on a hard floor"
+	IN?	GRAVEL,LOCAL-GLOBALS \?PRD6
+	SET	'CURRENT-GRAVEL,GRAVEL
+	ZERO?	CURRENT-GRAVEL \?CCL4
+?PRD6:	IN?	MORE-GRAVEL,LOCAL-GLOBALS \?PRD9
+	SET	'CURRENT-GRAVEL,MORE-GRAVEL
+	ZERO?	CURRENT-GRAVEL \?CCL4
+?PRD9:	IN?	EVEN-MORE-GRAVEL,LOCAL-GLOBALS \?CND3
+	SET	'CURRENT-GRAVEL,EVEN-MORE-GRAVEL
+	ZERO?	CURRENT-GRAVEL /?CND3
+?CCL4:	PRINTI	"; a shower of gravel lands on top of you"
+?CND3:	CALL2	ULTIMATELY-IN?,LARGE-VIAL
+	ZERO?	STACK /?CND14
+	GRTR?	LARGE-VIAL-GLOOPS,0 \?CND14
+	SET	'LARGE-VIAL-GLOOPS,0
+	REMOVE	LARGE-VIAL-WATER
+	SET	'SPILL,TRUE-VALUE
+?CND14:	CALL2	ULTIMATELY-IN?,SMALL-VIAL
+	ZERO?	STACK /?CND18
+	GRTR?	SMALL-VIAL-GLOOPS,0 \?CND18
+	SET	'SMALL-VIAL-GLOOPS,0
+	REMOVE	SMALL-VIAL-WATER
+	SET	'SPILL,TRUE-VALUE
+?CND18:	CALL2	ULTIMATELY-IN?,CUP
+	ZERO?	STACK /?CND22
+	IN?	POTION,CUP \?CND22
+	REMOVE	POTION
+	SET	'SPILL,TRUE-VALUE
+?CND22:	ZERO?	SPILL /?CND26
+	PRINTI	". You seem to have spilled something, also"
+?CND26:	PRINTC	46
+	ZERO?	CURRENT-GRAVEL /?CND28
+	MOVE	CURRENT-GRAVEL,PROTAGONIST
+?CND28:	SET	'HERE,LOWEST-HALL
+	ICALL	ROB,PROTAGONIST,LOWEST-HALL,TRUE-VALUE
+	CRLF	
+	CRLF	
+	RETURN	LOWEST-HALL
+
+	.SEGMENT "0"
+
+
+	.FUNCT	G-GRAVEL-F,TBL,LEN,?TMP1
+	ADD	TBL,8 >?TMP1
+	GET	TBL,1
+	INTBL?	GRAVEL,?TMP1,STACK \?CCL3
+	RETURN	GRAVEL
+?CCL3:	RETURN	MORE-GRAVEL
+
+
+	.FUNCT	GRAVEL-F
+	EQUAL?	PRSA,V?TAKE \?CCL3
+	ICALL2	ORDER-GRAVEL,PROTAGONIST
+	RFALSE	
+?CCL3:	EQUAL?	PRSA,V?DROP \?CCL5
+	ICALL2	ORDER-GRAVEL,HERE
+	RFALSE	
+?CCL5:	EQUAL?	PRSA,V?COUNT,V?MEASURE,V?EXAMINE \?CCL7
+	PRINTR	"It's about a handful."
+?CCL7:	EQUAL?	PRSA,V?POUR \FALSE
+	EQUAL?	PRSO,EVEN-MORE-GRAVEL,MORE-GRAVEL,GRAVEL \FALSE
+	ICALL	PERFORM,V?PUT,PRSO,PRSI
+	RTRUE	
+
+	.ENDSEG
+
+	.SEGMENT "LAKE"
+
+
+	.FUNCT	IDOL-F
+	EQUAL?	PRSA,V?EXAMINE \FALSE
+	PRINTR	"The idol has been carved into the cave wall by the hand of a master sculptor (who obviously spent far more time on the project than a saint of Foobus' stature deserves)."
+
+
+	.FUNCT	BOWL-F,CNT
+	CALL1	GRAVEL-COUNT >CNT
+	EQUAL?	PRSA,V?CLOSE \?CCL3
+	PRINT	HUH
+	RTRUE	
+?CCL3:	EQUAL?	PRSA,V?EXAMINE \?CCL5
+	PRINTI	"The bowl is tall and narrow, like a large drinking glass. "
+	ICALL	PERFORM,V?LOOK-INSIDE,BOWL
+	RTRUE	
+?CCL5:	EQUAL?	PRSA,V?LOOK-INSIDE \?CCL7
+	PRINTI	"It is "
+	ZERO?	CNT \?CCL10
+	PRINTI	"less than a quarter"
+	JUMP	?CND8
+?CCL10:	EQUAL?	CNT,1 \?CCL12
+	PRINTI	"more than a quarter"
+	JUMP	?CND8
+?CCL12:	EQUAL?	CNT,2 \?CCL14
+	PRINTI	"less than half"
+	JUMP	?CND8
+?CCL14:	PRINTI	"more than half"
+?CND8:	PRINTR	" full with a milky elixir."
+?CCL7:	EQUAL?	PRSA,V?REACH-IN \?CCL16
+	EQUAL?	CNT,3 \?CCL19
+	PRINTI	"Your fingers are just long enough to touch the elixir. "
+	CALL1	TOUCH-ELIXIR
+	RSTACK	
+?CCL19:	PRINTI	"Because the bowl is so narrow, you can only get your fingers halfway to the bottom, "
+	ZERO?	CNT \?CCL22
+	PRINTI	"well"
+	JUMP	?CND20
+?CCL22:	EQUAL?	CNT,1 \?CCL24
+	PRINTI	"somewhat"
+	JUMP	?CND20
+?CCL24:	EQUAL?	CNT,2 \?CND20
+	PRINTI	"a smidgeon"
+?CND20:	PRINTR	" short of the elixir."
+?CCL16:	EQUAL?	PRSA,V?PUT \?CCL27
+	EQUAL?	PRSI,BOWL \?CCL27
+	EQUAL?	PRSO,EVEN-MORE-GRAVEL,MORE-GRAVEL,GRAVEL \?CCL32
+	MOVE	PRSO,BOWL
+	FCLEAR	PRSO,TAKEBIT
+	PRINTI	"The gravel sinks to the bottom of the bowl, thus raising the level of the elixir. It is now "
+	INC	'CNT
+	EQUAL?	CNT,1 \?CCL35
+	PRINTI	"somewhat more than one-quarter"
+	JUMP	?CND33
+?CCL35:	EQUAL?	CNT,2 \?CCL37
+	PRINTI	"just less than half"
+	JUMP	?CND33
+?CCL37:	PRINTI	"a bit over half"
+?CND33:	PRINTR	"way to the brim."
+?CCL32:	EQUAL?	PRSO,STRAW \?CCL39
+	MOVE	STRAW,BOWL
+	PRINTR	"The straw extends just above the rim of the bowl."
+?CCL39:	EQUAL?	PRSO,EAST-KEY,ZORKMID-COIN,RING /?CTR40
+	EQUAL?	PRSO,SQUID-REPELLENT,RUSTY-KEY,WEST-KEY /?CTR40
+	EQUAL?	PRSO,NUT,NUT-SHELL,UNOPENED-NUT /?CTR40
+	EQUAL?	PRSO,SAPPHIRE,RUBY \?CCL41
+?CTR40:	MOVE	PRSO,BOWL
+	FCLEAR	PRSO,TAKEBIT
+	PRINTI	"With a tiny splash,"
+	ICALL1	TPRINT-PRSO
+	PRINTR	" sinks to the bottom of the bowl. It's not clear how you'll ever get it out again..."
+?CCL41:	PRINTR	"The rim of the bowl is too narrow."
+?CCL27:	EQUAL?	PRSA,V?TIP,V?MOVE,V?TAKE /?PRD49
+	EQUAL?	PRSA,V?TIP-OVER \FALSE
+?PRD49:	EQUAL?	PRSO,BOWL \FALSE
+	PRINTR	"The bowl is affixed to the cave floor."
+
+
+	.FUNCT	GRAVEL-COUNT,CNT
+	SET	'CNT,0
+	IN?	GRAVEL,BOWL \?CND1
+	INC	'CNT
+?CND1:	IN?	MORE-GRAVEL,BOWL \?CND3
+	INC	'CNT
+?CND3:	IN?	EVEN-MORE-GRAVEL,BOWL /?CCL6
+	RETURN	CNT
+?CCL6:	INC	'CNT
+	RETURN	CNT
+
+
+	.FUNCT	ELIXIR-F
+	EQUAL?	PRSA,V?REACH-IN,V?TOUCH \?CCL3
+	ICALL	PERFORM,V?REACH-IN,BOWL
+	RTRUE	
+?CCL3:	EQUAL?	PRSA,V?TASTE,V?DRINK \?CCL5
+	IN?	STRAW,BOWL \?CCL8
+	ICALL	PERFORM,V?DRINK-WITH,ELIXIR,STRAW
+	RTRUE	
+?CCL8:	PRINTR	"The elixir is at the bottom of a bowl which is affixed to the cave floor."
+?CCL5:	EQUAL?	PRSA,V?CLEAN \?CCL10
+	EQUAL?	P-PRSA-WORD,W?SOAK \?CCL10
+	EQUAL?	PRSI,ELIXIR \?CCL10
+	ICALL	PERFORM,V?PUT,PRSO,ELIXIR
+	RTRUE	
+?CCL10:	EQUAL?	PRSA,V?PUT \?CCL15
+	EQUAL?	PRSI,ELIXIR \?CCL15
+	ICALL	PERFORM,V?PUT,PRSO,BOWL
+	RTRUE	
+?CCL15:	EQUAL?	PRSA,V?EXAMINE \?CCL19
+	PRINTR	"The milky liquid swirls with secret energies."
+?CCL19:	EQUAL?	PRSA,V?FILL \FALSE
+	EQUAL?	PRSI,ELIXIR \FALSE
+	EQUAL?	PRSO,STRAW \?CCL26
+	PRINTR	"You'll have to be more specific about how you propose to do that."
+?CCL26:	PRINTI	"The bowl's narrowness prevents you from filling"
+	CALL2	TRPRINT,PRSO
+	RSTACK	
+
+
+	.FUNCT	LAIR-EXIT-F,RARG
+	ZERO?	RARG \?CCL2
+	EQUAL?	CURRENT-SPLIT,MAP-TOP-LEFT-LOC \?CND1
+?CCL2:	RETURN	G-U-WOODS
+?CND1:	PRINTI	"You lose your footing on the treacherous path, and tumble painfully down a steep incline. "
+	FIRST?	PROTAGONIST \?CND5
+	PRINTI	"Amazingly, you hold on to everything you have. "
+?CND5:	PRINTI	"You roll to a stop as dim green light filters around you"
+	PRINT	ELLIPSIS
+	RETURN	G-U-WOODS
+
+
+	.FUNCT	G-U-WOODS-F,RARG
+	EQUAL?	RARG,M-ENTER \FALSE
+	FSET?	G-U-WOODS,TOUCHBIT /FALSE
+	CALL	QUEUE,I-FOX,-1
+	RSTACK	
+
+	.SEGMENT "0"
+
+
+	.FUNCT	FOX-F
+	EQUAL?	PRSA,V?RESEARCH \?CCL3
+	CALL	NOUN-USED?,FOX,W?FOX
+	ZERO?	STACK /?CCL3
+	PRINTR	"""A common animal."""
+?CCL3:	FSET?	FOX,ANIMATEDBIT \FALSE
+	EQUAL?	PRSA,V?TAKE \?CCL9
+	FSET?	FOX,ANIMATEDBIT \?CCL9
+	CALL2	ITAKE,TRUE-VALUE
+	EQUAL?	STACK,M-FATAL /TRUE
+	MOVE	FOX,PROTAGONIST
+	PRINTR	"The fox slyly allows himself to be picked up."
+?CCL9:	EQUAL?	PRSA,V?GIVE \?CCL16
+	EQUAL?	PRSO,ROOSTER \?CCL16
+	REMOVE	ROOSTER
+	PRINTR	"The fox must be thinking that you're Santa Claus and this is Christmas (but of course he's too sly to let you see that he's thinking that). After a few messy moments, the rooster is history."
+?CCL16:	EQUAL?	PRSA,V?FEED \FALSE
+	CALL2	ULTIMATELY-IN?,ROOSTER
+	ZERO?	STACK /FALSE
+	CALL	WOULDNT-MIND,FOX,ROOSTER
+	RSTACK	
+
+
+	.FUNCT	WOULDNT-MIND,EATER,EATEE
+	PRINTI	"The "
+	ICALL2	DPRINT,EATER
+	PRINTI	" looks as though he wouldn't mind eating the "
+	ICALL2	DPRINT,EATEE
+	PRINTR	"..."
+
+
+	.FUNCT	I-W-FOX,L
+	LOC	FOX >L
+	FSET	FOX,ANIMATEDBIT
+	FCLEAR	FOX,WEARBIT
+	FCLEAR	FOX,WORNBIT
+	IN?	FOX,LAKE-BOTTOM \?CCL3
+	REMOVE	FOX
+	RTRUE	
+?CCL3:	CALL2	META-LOC,FOX
+	EQUAL?	STACK,HERE \?CCL5
+	ICALL1	RETURN-FROM-MAP
+	PRINTI	"   The fox suddenly "
+	EQUAL?	L,PROTAGONIST,HERE /?CND6
+	FSET?	L,DROPBIT /?CND6
+	MOVE	FOX,HERE
+	FSET	L,OPENBIT
+	PRINTI	"pops out of"
+	ICALL2	TPRINT,L
+	PRINTI	" and "
+?CND6:	PRINTR	"shakes its bushy tail."
+?CCL5:	CALL2	META-LOC,FOX
+	MOVE	FOX,STACK
+	RFALSE	
+
+
+	.FUNCT	I-FOX,L
+	FSET?	FOX,ANIMATEDBIT \FALSE
+	CALL2	VISIBLE?,FOX
+	ZERO?	STACK \?CCL5
+	LOC	FOX >L
+	ZERO?	L /FALSE
+	LOC	ROOSTER
+	EQUAL?	L,STACK \FALSE
+	FSET?	ROOSTER,ANIMATEDBIT \FALSE
+	FSET?	L,ACTORBIT /FALSE
+	SET	'FOX-BURP,TRUE-VALUE
+	REMOVE	ROOSTER
+	RFALSE	
+?CCL5:	ZERO?	FOX-BURP /?CCL13
+	SET	'FOX-BURP,FALSE-VALUE
+	ICALL1	RETURN-FROM-MAP
+	PRINTR	"   The fox produces a deep and very sly burp."
+?CCL13:	CALL2	VISIBLE?,ROOSTER
+	ZERO?	STACK /FALSE
+	FSET?	ROOSTER,ANIMATEDBIT \FALSE
+	RANDOM	100
+	LESS?	FOX-PROB,STACK /?CCL19
+	SET	'FOX-PROB,0
+	ICALL1	RETURN-FROM-MAP
+	PRINTR	"   The fox stares at the rooster and smacks its lips."
+?CCL19:	ADD	FOX-PROB,10 >FOX-PROB
+	RFALSE	
+
+	.ENDSEG
+
+	.SEGMENT "LAKE"
+
+
+	.FUNCT	UNICORNS-F
+	EQUAL?	PRSA,V?SIT,V?CLIMB-ON,V?ENTER \?CCL3
+	PRINTR	"As you approach, the unicorns move gracefully away."
+?CCL3:	EQUAL?	PRSA,V?PUT-ON \FALSE
+	EQUAL?	PRSO,SADDLE \FALSE
+	ICALL	PERFORM,V?ENTER,UNICORNS
+	RTRUE	
+
+
+	.FUNCT	BRIDGE-F
+	EQUAL?	PRSA,V?EXAMINE \?CCL3
+	PRINTR	"The bridge looks odd, perhaps because of its unusual green color."
+?CCL3:	EQUAL?	PRSA,V?STAND-ON,V?ENTER,V?CROSS \FALSE
+	CALL2	DO-WALK,P?WEST
+	RSTACK	
+
+
+	.FUNCT	BRIDGE-ENTER-F,RARG
+	ZERO?	RARG \FALSE
+	IN?	BRIDGE,HERE \?CCL5
+	IN?	PROTAGONIST,CAMEL \?CCL8
+	ICALL1	RETURN-FROM-MAP
+	PRINTI	"The bridge is too small for the huge, lumbering camel."
+	CRLF	
+	RFALSE	
+?CCL8:	ICALL1	RETURN-FROM-MAP
+	REMOVE	BRIDGE
+	ICALL2	DEQUEUE,I-JESTER
+	MOVE	JESTER,HERE
+	ICALL2	THIS-IS-IT,JESTER
+	MOVE	DIPLOMA,JESTER
+	FCLEAR	DIPLOMA,NDESCBIT
+	ICALL2	SETUP-ORPHAN,STR?44
+	PRINTI	"As you step onto the bridge, it begins transforming and withdrawing from the opposite bank of the stream. When the transformation ends, the bridge has become the jester, who is on all fours, and you are standing in the center of his back! With clumsy haste and muttered apologies, you dismount. The jester straightens up, and laughs, ""No hard feelings! I'll be fit as a fiddle, once you answer this riddle:"
+	GETP	STREAM,P?RIDDLE
+	PRINT	STACK
+	CRLF	
+	RFALSE	
+?CCL5:	PRINTI	"Without a bridge, the stream is uncrossable."
+	CRLF	
+	RFALSE	
+
+
+	.FUNCT	MUSIC-F
+	EQUAL?	PRSA,V?PLAY \?CCL3
+	CALL2	PERFORM-PRSA,LULLABY
+	RSTACK	
+?CCL3:	EQUAL?	PRSA,V?LISTEN \FALSE
+	PRINTR	"[You can't hear any music right here!]"
+
+
+	.FUNCT	STREAM-OBJECT-F
+	EQUAL?	PRSA,V?CROSS \FALSE
+	CALL2	DO-WALK,P?WEST
+	RSTACK	
+
+
+	.FUNCT	CAMEL-DRINK-ROOM-F,RARG
+	EQUAL?	RARG,M-LOOK \?CCL3
+	EQUAL?	HERE,OASIS \?CCL6
+	PRINTI	"An underground spring bubbles up through the sands, forming a pool of clear, cold water. A hot wind blows off the desert to the southwest."
+	RTRUE	
+?CCL6:	PRINTI	"A wide stream gurgles out of the rocks, feeding the waters of the lake. "
+	FSET?	DIPLOMA,NDESCBIT \?CND7
+	PRINTI	"A strange green bridge spans the stream to the west. At the far end of the bridge, you can see a framed document of some sort. "
+?CND7:	PRINTI	"A path follows the shoreline to the east."
+	RTRUE	
+?CCL3:	EQUAL?	RARG,M-ENTER \?CCL10
+	EQUAL?	HERE,STREAM \?CCL10
+	FSET?	DIPLOMA,TRYTAKEBIT \?CCL10
+	MOVE	BRIDGE,HERE
+	FSET	DIPLOMA,NDESCBIT
+	MOVE	DIPLOMA,HERE
+	RTRUE	
+?CCL10:	EQUAL?	RARG,M-END \FALSE
+	EQUAL?	HERE,STREAM \?CND16
+	IN?	JESTER,HERE \?CND16
+	FSET?	DIPLOMA,TRYTAKEBIT \?CND16
+	ICALL2	SETUP-ORPHAN,STR?44
+?CND16:	IN?	CAMEL,HERE \FALSE
+	FSET?	CAMEL,ANIMATEDBIT \FALSE
+	ZERO?	CAMEL-THIRSTY /FALSE
+	SET	'CAMEL-THIRSTY,FALSE-VALUE
+	ICALL1	RETURN-FROM-MAP
+	PRINTI	"   The camel lumbers over to the "
+	EQUAL?	HERE,OASIS \?CCL29
+	PRINTI	"oasis"
+	JUMP	?CND27
+?CCL29:	PRINTI	"stream"
+?CND27:	PRINTR	" and takes an amazingly long sip."
+
+	.SEGMENT "0"
+
+
+	.FUNCT	DIPLOMA-F
+	EQUAL?	PRSA,V?TAKE \FALSE
+	FSET?	DIPLOMA,TRYTAKEBIT \FALSE
+	IN?	DIPLOMA,JESTER \?CCL8
+	PRINT	ANSWER-MY-RIDDLE
+	RTRUE	
+?CCL8:	CALL2	DO-FIRST,STR?602
+	RSTACK	
+
+	.ENDSEG
+
+	.SEGMENT "LAKE"
+
+
+	.FUNCT	G-CAMEL-F,X,Y
+	RETURN	CAMEL
+
+
+	.FUNCT	CAMEL-F,VARG
+	FSET?	CAMEL,ANIMATEDBIT \FALSE
+	EQUAL?	VARG,M-WINNER \?CCL5
+	EQUAL?	PRSA,V?WALK \?CCL8
+	IN?	PROTAGONIST,CAMEL \?CCL11
+	SET	'WINNER,PROTAGONIST
+	ICALL2	DO-WALK,PRSO
+	SET	'WINNER,CAMEL
+	RTRUE	
+?CCL11:	PRINTI	"Perhaps if you were ON the camel..."
+	CRLF	
+	JUMP	?CND6
+?CCL8:	EQUAL?	PRSA,V?DRINK \?CCL13
+	EQUAL?	PRSO,LAKE-FLATHEAD,WATER \?CCL13
+	EQUAL?	HERE,SOUTH-SHORE,EAST-SHORE \?CCL13
+	PRINTI	"You can lead a camel to water, but you can't make him drink."
+	CRLF	
+	JUMP	?CND6
+?CCL13:	RANDOM	100
+	LESS?	33,STACK /?CCL18
+	PRINTI	"""Snort."""
+	CRLF	
+	JUMP	?CND6
+?CCL18:	RANDOM	100
+	LESS?	50,STACK /?CCL20
+	PRINTI	"""Grunt."""
+	CRLF	
+	JUMP	?CND6
+?CCL20:	PRINTI	"""Groan."""
+	CRLF	
+?CND6:	CALL1	STOP
+	RSTACK	
+?CCL5:	ZERO?	VARG \FALSE
+	EQUAL?	PRSA,V?TOUCH \?CCL24
+	EQUAL?	P-PRSA-WORD,W?PAT,W?PET \?CCL24
+	PRINTR	"The camel emits an (almost) endearing bray."
+?CCL24:	EQUAL?	PRSA,V?EXAMINE \?CCL28
+	PRINTI	"The camel looks "
+	ZERO?	CAMEL-THIRSTY /?CCL31
+	PRINTI	"thirsty"
+	JUMP	?CND29
+?CCL31:	PRINTI	"sated"
+?CND29:	PRINT	PERIOD-CR
+	RTRUE	
+?CCL28:	EQUAL?	PRSA,V?LOOK-INSIDE \FALSE
+	PRINTR	"Never look a gift camel in the mouth."
+
+
+	.FUNCT	I-W-CAMEL
+	ZERO?	TIME-STOPPED /?CND1
+	ICALL	QUEUE,I-W-CAMEL,3
+	RFALSE	
+?CND1:	FSET	CAMEL,ANIMATEDBIT
+	FSET	CAMEL,ACTORBIT
+	CALL2	VISIBLE?,CAMEL
+	ZERO?	STACK /FALSE
+	ICALL1	RETURN-FROM-MAP
+	PRINTR	"   The camel's garish colors fade once again to the color of sand. His tail begins swishing around, and he emits a forlorn bray."
+
+
+	.FUNCT	DESERT-ENTER-F,RARG
+	ZERO?	RARG /?CCL3
+	RETURN	G-U-DESERT
+?CCL3:	IN?	PROTAGONIST,CAMEL \?CCL5
+	ZERO?	CAMEL-THIRSTY /?CCL5
+	ICALL1	RETURN-FROM-MAP
+	PRINTI	"The camel takes one look at the vast desert, gives a dry croak, and refuses to budge."
+	CRLF	
+	RFALSE	
+?CCL5:	IN?	PROTAGONIST,CAMEL \?CND8
+	SET	'CAMEL-THIRSTY,TRUE-VALUE
+?CND8:	RETURN	G-U-DESERT
+
+
+	.FUNCT	CACTI-F
+	EQUAL?	PRSA,V?EXAMINE \?CCL3
+	PRINTR	"All the cacti look particularly prickly."
+?CCL3:	EQUAL?	PRSA,V?LISTEN \?CCL5
+	ZERO?	PLANT-TALKER /?CCL5
+	PRINTR	"The cacti, in parched voices, are exchanging wry witticisms. It seems that all cacti have a very dry sense of humor."
+?CCL5:	CALL2	TOUCHING?,CACTI
+	ZERO?	STACK /FALSE
+	PRINTR	"Youch! Nasty cactus pricks!"
+
+
+	.FUNCT	DESERT-ROOM-F,RARG
+	EQUAL?	RARG,M-ENTER \?CCL3
+	IN?	PROTAGONIST,CAMEL /?CCL3
+	INC	'DESERT-DEATH
+	ICALL	QUEUE,I-DESERT-RESET,-1
+	ICALL1	RETURN-FROM-MAP
+	PRINTI	"You trudge along beneath the searing gaze of an artificial desert sun"
+	EQUAL?	DESERT-DEATH,4 \?CCL8
+	PRINTI	". Wavering dizziness threatens your every step"
+	JUMP	?CND6
+?CCL8:	EQUAL?	DESERT-DEATH,3 \?CND6
+	PRINTI	". You won't last much longer in this dry heat"
+?CND6:	PRINT	ELLIPSIS
+	RTRUE	
+?CCL3:	EQUAL?	RARG,M-END \FALSE
+	EQUAL?	DESERT-DEATH,5 \FALSE
+	ICALL1	RETURN-FROM-MAP
+	CALL2	JIGS-UP,STR?610
+	RSTACK	
+
+
+	.FUNCT	I-DESERT-RESET
+	FSET?	HERE,DESERTBIT /FALSE
+	SET	'DESERT-DEATH,0
+	ICALL2	DEQUEUE,I-DESERT-RESET
+	RFALSE	
+
+
+	.FUNCT	PHIL-HALL-F,RARG
+	EQUAL?	RARG,M-LOOK \FALSE
+	PRINTI	"This was the visually impressive but acoustically abysmal home of the royal orchestra, but the musicians (like everyone else) have fled the eastlands. Uncountable rows of velvet-covered seats extend into the shadows beyond your light. Gilt-trimmed balconies hang above the huge wooden stage. "
+	IN?	CONDUCTOR-STAND,HERE \?CND4
+	PRINTI	"A lone spotlight illuminates the conductor's stand. "
+?CND4:	PRINTI	"Passages lead east, north and south."
+	RTRUE	
+
+
+	.FUNCT	PHIL-SHADOW-PS
+	EQUAL?	PRSA,V?EXAMINE \FALSE
+	PRINTR	"Like most shadows, a little creepy."
+
+
+	.FUNCT	SPOTLIGHT-PS
+	EQUAL?	PRSA,V?EXAMINE \?CCL3
+	IN?	CONDUCTOR-STAND,HERE \?CCL3
+	PRINTR	"The spotlight bathes the conductor's stand in a circle of light."
+?CCL3:	EQUAL?	PRSA,V?ENTER \FALSE
+	IN?	PROTAGONIST,CONDUCTOR-STAND \?CCL10
+	PRINT	LOOK-AROUND
+	RTRUE	
+?CCL10:	IN?	CONDUCTOR-STAND,HERE \?CCL12
+	ICALL	PERFORM,V?ENTER,CONDUCTOR-STAND
+	RTRUE	
+?CCL12:	PRINTR	"You stand in the center of the circle of light, to little effect."
+
+
+	.FUNCT	CONDUCTOR-STAND-F,OARG
+	ZERO?	OARG \FALSE
+	EQUAL?	PRSA,V?STAND-ON,V?ENTER \?CCL5
+	ZERO?	TIME-STOPPED \?CCL5
+	PRINTI	"The "
+	ICALL2	DPRINT,CONDUCTOR-STAND
+	PRINTI	" plunges "
+	EQUAL?	HERE,CONDUCTOR-PIT \?CCL10
+	PRINTI	"up"
+	JUMP	?CND8
+?CCL10:	PRINTI	"down"
+?CND8:	PRINTI	"ward, and you along with it"
+	PRINT	ELLIPSIS
+	EQUAL?	HERE,CONDUCTOR-PIT \?CCL13
+	FSET	CONDUCTOR-STAND,NDESCBIT
+	PUSH	PHIL-HALL
+	JUMP	?CND11
+?CCL13:	FCLEAR	CONDUCTOR-STAND,NDESCBIT
+	PUSH	CONDUCTOR-PIT
+?CND11:	MOVE	CONDUCTOR-STAND,STACK
+	CALL2	GOTO,CONDUCTOR-STAND
+	RSTACK	
+?CCL5:	EQUAL?	PRSA,V?EXAMINE \FALSE
+	PRINTI	"The stand is a rectangular platform about a foot high."
+	FIRST?	CONDUCTOR-STAND \?CCL18
+	PRINTC	32
+	RFALSE	
+?CCL18:	CRLF	
+	RTRUE	
+
+
+	.FUNCT	CONDUCTOR-PIT-F,RARG
+	EQUAL?	RARG,M-ENTER \FALSE
+	IN?	CONDUCTOR-STAND,CONDUCTOR-PIT /FALSE
+	FSET	VIOLIN,TOUCHBIT
+	RTRUE	
+
+	.SEGMENT "0"
+
+
+	.FUNCT	VIOLIN-F
+	EQUAL?	PRSA,V?PLAY \?CCL3
+	PRINTR	"An amazingly offensive noise issues from the violin."
+?CCL3:	EQUAL?	PRSA,V?EXAMINE \FALSE
+	PRINTR	"This is a beautiful instrument which, in the right hands, would certainly produce magnificent music."
+
+	.ENDSEG
+
+	.SEGMENT "LAKE"
+
+
+	.FUNCT	DIMWIT-BOX-PS
+	EQUAL?	PRSA,V?EXAMINE \?CCL3
+	PRINTR	"Plush. Very plush."
+?CCL3:	EQUAL?	PRSA,V?LOOK-INSIDE,V?SEARCH \?CCL5
+	ICALL	PERFORM,V?SEARCH,GLOBAL-HERE
+	RTRUE	
+?CCL5:	EQUAL?	PRSA,V?PUT \?CCL7
+	ICALL	PERFORM,V?DROP,PRSO
+	RTRUE	
+?CCL7:	EQUAL?	PRSA,V?CLIMB-ON,V?ENTER \FALSE
+	PRINTR	"Why bother? No show tonight."
+
+	.ENDSEG
+
+	.ENDI

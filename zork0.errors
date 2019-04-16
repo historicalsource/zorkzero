@@ -1,0 +1,39 @@
+Assembling ZORK0.ZAP.1 on Wednesday, October 19, 1988 19:35:38
+Release: 296
+
+    64	Inserting ZORK0FREQ.XZAP.4	   (628 bytes)
+   692	Inserting ZORK0DAT.ZAP.1	 (53436 bytes)
+ 54128	Inserting ZORK0PUR.ZAP.1	  (6732 bytes)
+ 60860	Inserting PSTACK.ZAP.1	    (38 bytes)
+ 60898	Inserting PMEM.ZAP.1	   (104 bytes)
+ 61002	Inserting DEFS2.ZAP.1	    (19 bytes)
+ 61021	Inserting PARSER.ZAP.1	  (4286 bytes)
+ 65307	Inserting FIND.ZAP.1	  (1913 bytes)
+ 67220	Inserting REDS.ZAP.1	  (5796 bytes)
+ 73016	Inserting TOP.ZAP.1	  (2319 bytes)
+ 75335	Inserting PRARE.ZAP.1	  (4325 bytes)
+ 79660	Inserting MISC.ZAP.1	  (1498 bytes)
+ 81158	Inserting INPUT.ZAP.1	  (2001 bytes)
+ 83159	Inserting VERBS.ZAP.1	 (26809 bytes)
+109968	Inserting GLOBALS.ZAP.1	 (11891 bytes)
+121859	Inserting PIC.ZAP.1	   (340 bytes)
+122199	Inserting PROLOGUE.ZAP.1	  (9969 bytes)
+132168	Inserting CASTLE.ZAP.1	 (19888 bytes)
+152056	Inserting LIBRARY.ZAP.1	  (1736 bytes)
+153792	Inserting VILLAGE.ZAP.1	  (4709 bytes)
+158501	Inserting LAKE.ZAP.1	 (10317 bytes)
+168818	Inserting HIGHWAY.ZAP.1	  (9986 bytes)
+178804	Inserting ORACLE.ZAP.1	 (15063 bytes)
+193867	Inserting CHESS.ZAP.1	  (3763 bytes)
+197630	Inserting JESTER.ZAP.1	 (11786 bytes)
+209416	Inserting FENSHIRE.ZAP.1	  (6166 bytes)
+215582	Inserting CLUES.ZAP.1	  (1912 bytes)
+217494	Inserting ZORK0STR.ZAP.1	 (78038 bytes)
+603 objects.
+226 globals.
+1619 word vocabulary.
+
+295532 bytes (289K).
+ 54128 bytes of preload.
+ 32134 bytes of impure.
+Outputting symbol tables

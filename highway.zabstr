@@ -1,0 +1,406 @@
+
+<BEGIN-SEGMENT LOWER> 
+<ROOM G-U-HIGHWAY (LOC ROOMS) (REGION "Flatheadia") (DESC
+"Great Underground Highway") (LDESC
+"This is the northern terminus of one of the branches of the Great Underground
+Highway system, one of the ambitious construction projects conceived by King
+Duncanthrax and executed by the Frobozz Magic Cave Company. A tunnel leads
+northeast.") (NE TO LOWER-HALL) (SOUTH TO EXIT) (FLAGS RLANDBIT UNDERGROUNDBIT)
+(MAP-LOC <PTABLE LOWER-LEVEL-MAP-NUM MAP-GEN-Y-6 MAP-GEN-X-5>) (ICON
+G-U-HIGHWAY-ICON)> 
+<ROOM EXIT (LOC ROOMS) (REGION "Flatheadia") (DESC "Exit") (LDESC
+"A wide underground road runs north and south. There's an eye-catching sign
+next to a tunnel leading west.") (WEST TO FIELD-OFFICE) (NORTH TO G-U-HIGHWAY)
+(SOUTH TO CROSSROADS) (FLAGS RLANDBIT UNDERGROUNDBIT) (GLOBAL SIGN) (MAP-LOC <
+PTABLE LOWER-LEVEL-MAP-NUM MAP-GEN-Y-7 MAP-GEN-X-5>) (ICON EXIT-ICON)> 
+<END-SEGMENT> 
+<BEGIN-SEGMENT FOOZLE> 
+<ROOM CROSSROADS (LOC ROOMS) (REGION "Somewhere Along the GUH") (DESC
+"Crossroads") (LDESC
+"You stand at the junction of two underground highways, one north-south
+and the other east-west. A sign hangs in the center of the junction.") (NORTH
+TO EXIT) (SOUTH TO TOLL-PLAZA) (EAST TO CAVE-IN) (WEST TO POTHOLES) (FLAGS
+RLANDBIT UNDERGROUNDBIT) (GLOBAL SIGN) (MAP-LOC <PTABLE FOOZLE-MAP-NUM
+MAP-GEN-Y-3 MAP-GEN-X-7>) (ICON CROSSROADS-ICON)> 
+<ROOM CAVE-IN (LOC ROOMS) (DESC "Cave-In") (REGION "Somewhere Along the GUH") (
+LDESC "Just ahead, the roof of the highway tunnel has collapsed, creating a dead
+end. (Decades of non-maintenance of the Empire's infrastructure are taking
+their toll.) Your only choice is to return to the west.") (WEST TO CROSSROADS)
+(OUT TO CROSSROADS) (FLAGS RLANDBIT UNDERGROUNDBIT) (MAP-LOC <PTABLE
+FOOZLE-MAP-NUM MAP-GEN-Y-3 MAP-GEN-X-8>) (ACTION CAVE-IN-F)> 
+<DEFINE-ROUTINE CAVE-IN-F> 
+<BEGIN-SEGMENT 0> 
+<OBJECT PIT-BOMB (LOC LOCAL-GLOBALS) (DESC "anti-pit bomb") (FDESC
+"Sitting on a piece of rubble is an anti-pit bomb.") (SYNONYM BOMB LABEL) (
+ADJECTIVE BOTTOMLESS ANTI-PIT) (FLAGS TAKEBIT READBIT VOWELBIT) (TEXT
+"\"Is your cavern infested with bottomless pits? If so, this anti-pit bomb is
+the answer to your prayers! Instructions: simply enter the pitted room and
+throw the bomb. All pit-filling agents are harmless; no protective gear is
+required!|
+   Another fine product of the Frobozz Magic Bottomless Pit Bomb Company.\"") (
+ACTION PIT-BOMB-F)> 
+<DEFINE-ROUTINE PIT-BOMB-F> 
+<GLOBAL PIT-BOMB-LOC <>> 
+<END-SEGMENT> 
+<BEGIN-SEGMENT FOOZLE> 
+<ROOM TOLL-PLAZA (LOC ROOMS) (DESC "Toll Plaza") (REGION
+"Somewhere Along the GUH") (NORTH TO CROSSROADS) (SOUTH TO FISSURE-EDGE IF
+TOLL-GATE IS OPEN) (FLAGS RLANDBIT UNDERGROUNDBIT) (SYNONYM PLAZA) (ADJECTIVE
+TOLL) (GLOBAL SIGN) (MAP-LOC <PTABLE FOOZLE-MAP-NUM MAP-GEN-Y-4 MAP-GEN-X-7>) (
+ICON TOLL-PLAZA-ICON) (ACTION TOLL-PLAZA-F)> 
+<DEFINE-ROUTINE TOLL-PLAZA-F> 
+<OBJECT TOLL-BOOTH (LOC TOLL-PLAZA) (DESC "toll booth") (SYNONYM BOOTH) (
+ADJECTIVE TOLL) (FLAGS NDESCBIT) (ACTION TOLL-BOOTH-F)> 
+<DEFINE-ROUTINE TOLL-BOOTH-F> 
+<OBJECT TOLL-GATE (LOC TOLL-PLAZA) (DESC "toll gate") (SYNONYM GATE) (ADJECTIVE
+TOLL) (FLAGS NDESCBIT DOORBIT) (ACTION TOLL-GATE-F)> 
+<DEFINE-ROUTINE TOLL-GATE-F> 
+<OBJECT BASKET (LOC TOLL-PLAZA) (DESC "exact change basket") (SYNONYM BASKET) (
+ADJECTIVE EXACT CHANGE) (FLAGS VOWELBIT NDESCBIT CONTBIT OPENBIT SEARCHBIT) (
+ACTION BASKET-F)> 
+<DEFINE-ROUTINE BASKET-F> 
+<ROOM FISSURE-EDGE (LOC ROOMS) (DESC "Fissure's Edge") (REGION
+"Somewhere Along the GUH") (LDESC
+"To the south, the road is rent by a wide fissure, the reminder of a recent
+quake. Judging by the footprints in the dust, many travellers have reached
+this point, only to turn around and head back to the north. The quake has
+also opened a narrow crack in the eastern wall of the tunnel; you might be
+able to squeeze into it.") (NORTH TO TOLL-PLAZA) (EAST TO TIGHT-SQUEEZE) (SOUTH
+SORRY "The fissure is uncrossable.") (DOWN SORRY
+"A plunge into the fissure would be fatal.") (FLAGS RLANDBIT UNDERGROUNDBIT) (
+MAP-LOC <PTABLE FOOZLE-MAP-NUM MAP-GEN-Y-5 MAP-GEN-X-7>) (ICON
+FISSURES-EDGE-ICON) (THINGS NARROW CRACK FISSURE-CRACK-PS WIDE FISSURE
+FISSURE-PS)> 
+<DEFINE-ROUTINE FISSURE-PS> 
+<DEFINE-ROUTINE FISSURE-CRACK-PS> 
+<ROOM TIGHT-SQUEEZE (LOC ROOMS) (DESC "Tight Squeeze") (REGION
+"Region:  Unknown") (LDESC
+"You are in a narrow fissure which widens to the west. A cool breeze seems
+to blow upon you from below.") (WEST TO FISSURE-EDGE) (DOWN TO ORB-ROOM) (
+SYNONYM FISSURE) (ADJECTIVE NARROW) (FLAGS RLANDBIT UNDERGROUNDBIT) (MAP-LOC <
+PTABLE FOOZLE-MAP-NUM MAP-GEN-Y-5 MAP-GEN-X-8>)> 
+<ROOM ORB-ROOM (LOC ROOMS) (DESC "Orb Room") (REGION "Region:  Unknown") (LDESC
+"The air is chilly, the walls are covered with ice, and the floor is piled
+high with crystal spheres of varying sizes and colors; most are chipped or
+shattered. Your light reveals no visible exits, although a trickle of warm,
+dry air caresses you from above.") (UP TO TIGHT-SQUEEZE) (OUT TO TIGHT-SQUEEZE)
+(FLAGS RLANDBIT UNDERGROUNDBIT) (MAP-LOC <PTABLE FOOZLE-MAP-NUM MAP-GEN-Y-5
+MAP-GEN-X-9>) (ICON ORB-ROOM-ICON) (THINGS <> ICE ICE-PS)> 
+<DEFINE-ROUTINE ICE-PS> 
+<BEGIN-SEGMENT 0> 
+<OBJECT MILKY-ORB (LOC ORB-ROOM) (DESC "milky orb") (FDESC
+"The only intact orbs seem to be a milky orb, a fiery orb, a glittery orb,
+and a smoky orb.") (SYNONYM ORB) (ADJECTIVE MILKY WHITE) (FLAGS TAKEBIT
+TRYTAKEBIT) (ACTION ORB-F)> 
+<OBJECT FIERY-ORB (LOC ORB-ROOM) (DESC "fiery orb") (SYNONYM ORB) (ADJECTIVE
+FIERY ORANGE) (FLAGS TAKEBIT TRYTAKEBIT NDESCBIT) (ACTION ORB-F)> 
+<OBJECT SMOKY-ORB (LOC ORB-ROOM) (DESC "smoky orb") (SYNONYM ORB) (ADJECTIVE
+SMOKY GRAY) (FLAGS TAKEBIT TRYTAKEBIT NDESCBIT) (ACTION ORB-F)> 
+<OBJECT GLITTERY-ORB (LOC ORB-ROOM) (DESC "glittery orb") (SYNONYM ORB) (
+ADJECTIVE GLITTERY GOLD GOLDEN) (FLAGS TAKEBIT TRYTAKEBIT NDESCBIT) (ACTION
+ORB-F)> 
+<DEFINE-ROUTINE ORB-F> 
+<END-SEGMENT> 
+<BEGIN-SEGMENT FOOZLE> 
+<ROOM POTHOLES (LOC ROOMS) (DESC "Potholes") (REGION "Somewhere Along the GUH")
+(LDESC "The road, which runs east to west, is in bad shape here, pitted with
+holes and ruts.") (EAST TO CROSSROADS) (WEST TO REST-STOP) (FLAGS RLANDBIT
+UNDERGROUNDBIT) (MAP-LOC <PTABLE FOOZLE-MAP-NUM MAP-GEN-Y-3 MAP-GEN-X-6>)> 
+<ROOM REST-STOP (LOC ROOMS) (DESC "Rest Stop") (REGION
+"Somewhere Along the GUH") (LDESC
+"By the north side of the road is a rest stop, closed and boarded up. The road
+continues east and southwest.") (EAST TO POTHOLES) (SW TO FORK) (FLAGS RLANDBIT
+UNDERGROUNDBIT) (MAP-LOC <PTABLE FOOZLE-MAP-NUM MAP-GEN-Y-3 MAP-GEN-X-5>) (ICON
+REST-STOP-ICON) (THINGS REST STOP REST-STOP-PS <> BOARD SHUTTER-PS <> SHUTTER
+SHUTTER-PS)> 
+<DEFINE-ROUTINE REST-STOP-PS> 
+<DEFINE-ROUTINE SHUTTER-PS> 
+<ROOM FORK (LOC ROOMS) (DESC "Fork") (REGION "Somewhere Along the GUH") (LDESC
+"The tunnel forks here, with roads leading northeast, west, and southwest.") (
+NE TO REST-STOP) (WEST TO FISHY-ODOR) (SW TO SALTY-SMELL) (FLAGS RLANDBIT
+UNDERGROUNDBIT) (MAP-LOC <PTABLE FOOZLE-MAP-NUM MAP-GEN-Y-4 MAP-GEN-X-4>) (ICON
+FORK-ICON)> 
+<ROOM FISHY-ODOR (LOC ROOMS) (DESC "Fishy Odor") (REGION "Port Foozle") (LDESC
+"The tunnel narrows toward a spot of light to the west. The stench of dead,
+rotting fish hangs in the air.") (EAST TO FORK) (WEST TO FISHING-VILLAGE) (
+FLAGS RLANDBIT UNDERGROUNDBIT) (MAP-LOC <PTABLE FOOZLE-MAP-NUM MAP-GEN-Y-4
+MAP-GEN-X-3>) (ICON FISHY-ODOR-ICON)> 
+<ROOM SALTY-SMELL (LOC ROOMS) (DESC "Salty Smell") (REGION "Port Foozle") (
+LDESC "The tunnel from the northeast is narrower here, and pervaded with the scent
+of the sea. You can hear breakers to the southwest.") (NE TO FORK) (SW TO
+QUILBOZZA-BEACH) (FLAGS RLANDBIT UNDERGROUNDBIT) (MAP-LOC <PTABLE
+FOOZLE-MAP-NUM MAP-GEN-Y-5 MAP-GEN-X-3>)> 
+<ROOM FISHING-VILLAGE (LOC ROOMS) (DESC "Fishing Village") (REGION
+"Port Foozle") (LDESC
+"This once-busy port, on the shore of the Great Sea, lies deserted. A tunnel
+opens to the east, the shoreline can be followed south along the ocean's edge,
+and a wharf juts into the harbor to the west. A newly constructed stone
+building lies to the north; an eye-catching sign has been erected next to its
+entrance.") (EAST TO FISHY-ODOR) (WEST TO WHARF) (SOUTH TO SANDBAR) (NORTH TO
+INQUISITION) (IN TO INQUISITION) (FLAGS RLANDBIT ONBIT OUTSIDEBIT) (GLOBAL
+VILLAGE SIGN FLATHEAD-OCEAN WHARF GLOBAL-BLDG) (MAP-LOC <PTABLE FOOZLE-MAP-NUM
+MAP-GEN-Y-4 MAP-GEN-X-2>) (ICON FISHING-VILLAGE-ICON) (ACTION FISHING-VILLAGE-F
+)> 
+<DEFINE-ROUTINE FISHING-VILLAGE-F> 
+<DEFINE-ROUTINE I-INQ> 
+<CONSTANT DOABLE-REQUESTS <LTABLE 0 "sing a song" "kick me" "kiss me">> 
+<CONSTANT UNDOABLE-REQUESTS <LTABLE 0 "give me a thousand zorkmids"
+"give me Ursula Flathead" "send me to Antharia">> 
+<GLOBAL INQ-NUMBER 0> 
+<GLOBAL NUMBER-ON-LINE 0> 
+<GLOBAL NUMBER-TAKEN 0> 
+<GLOBAL INQ-SCORE 25> 
+<ROOM INQUISITION (LOC ROOMS) (DESC "Inquisition") (REGION "Port Foozle") (
+SOUTH SORRY "A trollish guard blocks the exit. \"No one leave!\"") (OUT SORRY
+"A trollish guard blocks the exit. \"No one leave!\"") (FLAGS RLANDBIT ONBIT) (
+GLOBAL SIGN GLOBAL-BLDG) (MAP-LOC <PTABLE FOOZLE-MAP-NUM MAP-GEN-Y-3
+MAP-GEN-X-2>) (ACTION INQUISITION-F)> 
+<DEFINE-ROUTINE INQUISITION-F> 
+<BEGIN-SEGMENT 0> 
+<OBJECT TICKET (LOC INQUISITION) (DESC "ticket") (SYNONYM TICKET NUMBER) (OWNER
+PROTAGONIST) (FLAGS TAKEBIT READBIT TRYTAKEBIT NDESCBIT BURNBIT) (SIZE 1) (
+ACTION TICKET-F)> 
+<DEFINE-ROUTINE TICKET-F> 
+<OBJECT BOX (LOC INQUISITION) (DESC "box") (PLURAL "boxes") (FDESC
+"One of the sinners has apparently dropped a box here. The box has some
+writing on it.") (SYNONYM BOX WRITING) (ADJECTIVE SMALL) (FLAGS TAKEBIT CONTBIT
+READBIT SEARCHBIT) (SIZE 3) (CAPACITY 3) (OWNER BOX) (TEXT
+"\"Squid Repellent! Contents: 1 pellet. Dissolves slowly in water, keeps
+squid away for hours! Another fine product of the Frobozz Magic Squid
+Repellent Company.\"")> 
+<OBJECT SQUID-REPELLENT (LOC BOX) (OWNER SQUID-REPELLENT) (DESC
+"pellet of squid repellent") (SYNONYM PELLET REPELLENT) (ADJECTIVE LARGE SQUID)
+(FLAGS TAKEBIT) (SIZE 1) (ACTION SQUID-REPELLENT-F)> 
+<DEFINE-ROUTINE SQUID-REPELLENT-F> 
+<END-SEGMENT> 
+<BEGIN-SEGMENT FOOZLE> 
+<OBJECT EXECUTIONER (LOC INQUISITION) (DESC "executioner") (SYNONYM EXECUTIONER
+MAN) (FLAGS ACTORBIT VOWELBIT NDESCBIT ANIMATEDBIT) (ACTION EXECUTIONER-F)> 
+<DEFINE-ROUTINE EXECUTIONER-F> 
+<DEFINE-ROUTINE DOABLE-REQUEST> 
+<DEFINE-ROUTINE UNDOABLE-REQUEST> 
+<OBJECT THOUSAND-ZORKMIDS (LOC LOCAL-GLOBALS) (DESC "lots of zorkmids") (
+SYNONYM ZORKMIDS) (ADJECTIVE HUNDRED THOUSAND MILLION INT.NUM) (FLAGS
+NARTICLEBIT)> 
+<ROOM WHARF (LOC ROOMS) (DESC "Wharf") (REGION "Port Foozle") (LDESC
+"This wharf extends into the harbor from a village to the east. Along the
+north side of the wharf, a building rests on piers over the water.") (EAST TO
+FISHING-VILLAGE) (NORTH TO CASINO) (WEST SORRY
+"The wharf ends a few steps to the west.") (FLAGS RLANDBIT ONBIT OUTSIDEBIT) (
+SYNONYM WHARF) (GLOBAL VILLAGE GLOBAL-BLDG FLATHEAD-OCEAN) (MAP-LOC <PTABLE
+FOOZLE-MAP-NUM MAP-GEN-Y-4 MAP-GEN-X-1>) (ICON WHARF-ICON)> 
+<ROOM CASINO (LOC ROOMS) (DESC "Casino") (REGION "Port Foozle") (LDESC
+"This is the Port Foozle Casino, once a world-famous gambling spot, but
+now deserted and showing the effects of years of ocean storms. The casino
+has been heavily looted; only a single card table seems untouched. An exit
+leads south.") (SOUTH TO WHARF) (OUT TO WHARF) (FLAGS RLANDBIT ONBIT) (SYNONYM
+CASINO) (GLOBAL GLOBAL-BLDG) (MAP-LOC <PTABLE FOOZLE-MAP-NUM MAP-GEN-Y-3
+MAP-GEN-X-1>) (ACTION CASINO-F)> 
+<DEFINE-ROUTINE CASINO-F> 
+<OBJECT DOUBLE-FANUCCI (LOC GLOBAL-OBJECTS) (DESC "Double Fanucci") (SYNONYM
+FANUCCI FANNUCCI) (ADJECTIVE DOUBLE) (RESEARCH
+"\"Legend has it that Double Fanucci (or Fannucci) was invented by the deposed
+Zilbo III in the late seventh century. A game of tremendous complexity and
+almost infinite rules, King Mumberthrax proclaimed it the national sport of
+the Empire in 757 GUE. The annual Double Fanucci Championships, held in
+Borphee during early autumn, frequently leave thousands homeless.\"") (ACTION
+DOUBLE-FANUCCI-F)> 
+<DEFINE-ROUTINE DOUBLE-FANUCCI-F> 
+<OBJECT CARD-TABLE (LOC CASINO) (DESC "card table") (SYNONYM TABLE CHAIR) (
+ADJECTIVE CARD) (FLAGS NDESCBIT SURFACEBIT CONTBIT OPENBIT SEARCHBIT VEHBIT) (
+CAPACITY 50) (ACTION CARD-TABLE-F)> 
+<DEFINE-ROUTINE CARD-TABLE-F> 
+<DEFINE-ROUTINE F-START> 
+<DEFINE-ROUTINE SETUP-CARDS> 
+<CONSTANT F-PICSET-TBL <TABLE F-CARD-BACK F-CARD F-INKBLOTS F-PLUNGERS F-BUGS
+F-ZURFS F-EARS F-TOPS F-RAIN F-HIVES F-FACES F-MAZES F-LAMPS F-TIME F-BOOKS
+F-SCYTHES F-FROMPS F-RV-INKBLOTS F-RV-PLUNGERS F-RV-BUGS F-RV-ZURFS F-RV-EARS
+F-RV-TOPS F-RV-RAIN F-RV-HIVES F-RV-FACES F-RV-MAZES F-RV-LAMPS F-RV-TIME
+F-RV-BOOKS F-RV-SCYTHES F-RV-FROMPS F-0 F-1 F-2 F-3 F-4 F-5 F-6 F-7 F-8 F-9
+F-INFINITY F-RV-0 F-RV-1 F-RV-2 F-RV-3 F-RV-4 F-RV-5 F-RV-6 F-RV-7 F-RV-8
+F-RV-9 F-RV-INFINITY F-GRANOLA F-LOBSTER F-SNAIL F-JESTER F-HOURGLASS F-LIGHT
+F-BEAUTY F-DEATH F-GRUE 0>> 
+<DEFINE-ROUTINE SETUP-FANUCCI> 
+<CONSTANT F-PIC-LOCS <PTABLE ,F-DISCARD-PIC-LOC ,F-1-PIC-LOC ,F-2-PIC-LOC ,
+F-3-PIC-LOC ,F-4-PIC-LOC>> 
+<DEFINE-ROUTINE DRAW-CARDS> 
+<CONSTANT PICTURE-CARD-PROB 20> 
+<DEFINE-ROUTINE PICK-RANK> 
+<CONSTANT F-FACE-CARD-PIC-TBL <PTABLE ,F-GRANOLA ,F-LOBSTER ,F-SNAIL ,F-JESTER
+,F-HOURGLASS ,F-LIGHT ,F-BEAUTY ,F-DEATH ,F-GRUE>> 
+<DEFINE-ROUTINE DISPLAY-OFFSET> 
+<DEFINE-ROUTINE DRAW-CARD> 
+<DEFINE-ROUTINE FANUCCI> 
+<DEFINE-ROUTINE UPDATE-SCORES> 
+<DEFINE-ROUTINE SCORE-CHECK> 
+<GLOBAL J-CARDS 4> 
+<GLOBAL J-DISCARD-FROMP-PROB 0> 
+<GLOBAL F-WIN-COUNT 0> 
+<CONSTANT DRAW-CARDS-TABLE <TABLE 1 1 1 1 1>> 
+<CONSTANT J-LAST-CARD <TABLE 0 0>> 
+<CONSTANT FROMP-SUIT 15> 
+<CONSTANT TREBLED-RANK 11> 
+<DEFINE-ROUTINE J-PLAY> 
+<CONSTANT J-PLAY-TABLE <PTABLE "shrugs. \"Just a simple Borphee Bluff.\""
+"smiles. \"A devilish Kovalli Hustle, don't you think?\""
+"shudders. \"Babe would turn over in his grave if he could see my playing.\""
+"looks satisfied. \"That ought to up the ante toward a Doubleton Duck.\""
+"resists an urge to spike his cards. \"You fell for my Festeron Finesse! I get Honors!\""
+"shouts, \"Whangdoogle! Four to the kitty! Minor ruff!\" and massages the resulting torn shoulder muscle."
+"kicks himself. \"I should've revoked a Singleton in the third frame!\""
+"snickers at you. \"Bet you didn't see that Segmented Shuffle coming!\""
+"complains. \"Shy Openers! All I get are Shy Openers!\""
+"applauds with delight. \"Zilbo's Half-Renege! I love it!\""
+"sighs. \"I came so close to a Full Foozle Progression.\""
+"produces two large mallard ducks out of thin air, thus Royal Bidding
+his play." "takes a third of the deck and burns it. \"Unlimited Singleton Bids for
+the rest of the game!\""
+"invokes the Grand Slam clause and reshuffles the deck. \"Slice and Call,\"
+he claims." "exhales a deep breath. \"I wasn't sure I'd have time for that Inside
+Duo-Trick.\"" "gulps. \"I came close to having to invoke the Golden Fromp clause!\""
+"scowls. \"An Unrejuvenated Slamboozle!\" To repent, he changes shape
+to a hawk, then a milk cow, then a large carpenter ant, and finally back
+to a jester. \"Full repentance; losses halved,\" he states.">> 
+<CONSTANT J-PLAY-SCORES <PTABLE -10 -78 44 -21 -95 -31 22 -42 34 -56 -4 -28 -16
+-37 -25 15 -22>> 
+<DEFINE-ROUTINE PICK-PLAY> 
+<DEFINE-ROUTINE UNBOLD-MOVE> 
+<DEFINE-ROUTINE BOLD-MOVE> 
+<DEFINE-ROUTINE PLAY-SELECTED> 
+<DEFINE-ROUTINE F-MOUSE-CARD-PICK> 
+<DEFINE-ROUTINE PRINT-CARD-NAME> 
+<CONSTANT F-PLAY-TABLE <PTABLE "DRAW " "DISCARD " "DIVIDE " "REVERSE " "TRUMP "
+"UNDERTRUMP " "COMBINE " "PASS " "OVERPASS " "SINGLE-PLAY " "DOUBLE-PLAY "
+"MUTTONATE " "IONIZE " "CHEAT " "RESIGN ">> 
+<CONSTANT F-PLAY-TABLE-LC <PTABLE "draw" "discard" "divide" "reverse" "trump"
+"undertrump" "combine" "pass" "overpass" "single-play" "double-play"
+"muttonate" "ionize" "cheat" "resign">> 
+<CONSTANT RANK-PIC-TBL <PTABLE <> F-4 F-5 F-6 F-7 F-8 F-9 F-0 F-INFINITY F-1
+F-2 F-3>> 
+<CONSTANT RANK-REV-TBL <PTABLE <> F-RV-4 F-RV-5 F-RV-6 F-RV-7 F-RV-8 F-RV-9
+F-RV-0 F-RV-INFINITY F-RV-1 F-RV-2 F-RV-3>> 
+<CONSTANT F-RANK-TABLE <PTABLE <> "the Four of" "the Five of" "the Six of"
+"the Seven of" "the Eight of" "the Nine of" "the Naught of" "Infinite"
+"Singled" "Doubled" "Trebled" "Granola" "the Lobster" "the Snail" "the Jester"
+"Time" "Light" "Beauty" "Death" "the Grue">> 
+<CONSTANT SUIT-PIC-TBL <PTABLE <> F-INKBLOTS F-PLUNGERS F-BUGS F-ZURFS F-EARS
+F-TOPS F-RAIN F-HIVES F-FACES F-MAZES F-LAMPS F-TIME F-BOOKS F-SCYTHES F-FROMPS
+>> 
+<CONSTANT SUIT-REV-TBL <PTABLE <> F-RV-INKBLOTS F-RV-PLUNGERS F-RV-BUGS
+F-RV-ZURFS F-RV-EARS F-RV-TOPS F-RV-RAIN F-RV-HIVES F-RV-FACES F-RV-MAZES
+F-RV-LAMPS F-RV-TIME F-RV-BOOKS F-RV-SCYTHES F-RV-FROMPS>> 
+<CONSTANT F-SUIT-TABLE <PTABLE <> "Inkblots" "Plungers" "Bugs" "Zurfs" "Ears"
+"Tops" "Rain" "Hives" "Faces" "Mazes" "Lamps" "Time" "Books" "Scythes" "Fromps"
+>> 
+<CONSTANT F-CARD-TABLE <TABLE <> <> <> <> <> <> <> <> <> <>>> 
+<GLOBAL YOUR-SCORE 0> 
+<GLOBAL J-SCORE 0> 
+<GLOBAL F-PLAYS 0> 
+<DEFINE-ROUTINE CHEAT-RESULT> 
+<DEFINE-ROUTINE F-SCORE> 
+<CONSTANT CHEAT-WINS <PTABLE 3
+"You catch the jester looking out the window, and take the opportunity to
+alter the scores." 45 "You distract the jester by faking a muscle cramp." 23
+"You successfully slip a card out of your sleeve." 19>> 
+<CONSTANT CHEAT-LOSSES <PTABLE 3
+"The jester seems to doze off for a moment, and you try to take advantage by
+fudging the scores. However, the jester stirs, and in your haste you help the
+jester instead of yourself!" -60
+"The jester catches you marking the cards, and assesses a stiff penalty." -47
+"You substitute a card from the middle of the deck, but the new card places
+you in an even worse position!" -33>> 
+<CONSTANT J-RESPONSES <PTABLE "during the middle third of Mumberber!\""
+"before a New Sun!\"" "in a two-person game!\"" "cries, \"Daring move!\""
+"looks bored. \"The old Oddzio Gambit.\"" "says, \"A gutsy play!\""
+"applauds. \"A brilliant Festeron Feint!\""
+"sneers. \"A transparent maneuver.\""
+"shakes his head. \"A poorly executed Antharian Attack.\""
+"exclaims, \"A skillful finesse!\""
+"is obviously impressed. \"A spectacular Bloodworm Defense!\""
+"sniffs. \"A weak response.\""
+"smiles mysteriously. \"An unusual Balsawood Convention!\""
+"looks impressed. \"That was a stroke of genius!\""
+"taps his fingers impatiently. \"A typical Egreth Convention.\""
+"whispers, \"Crude, but effective.\""
+"tips his hat to you. \"A well-executed Zilbo Standard!\""
+"looks unimpressed. \"Just a lucky stroke!\""
+"smirks. \"A poorly timed Forborn Chisel, wouldn't you say?\""
+"laughs. \"That was a sign of panic on your part, if you ask me.\""
+"peruses your move. \"Ah, yes. The Accardi Variation. I haven't seen that one in a while.\""
+"bows his head with respect. \"You're a regular Fanuccimeister, eh?\""
+"salutes you. \"A well-timed Frotz Factor! Bravo!\""
+"scratches his head. \"A thoroughly mystifying maneuver.\""
+"yawns. \"The dependable Zibble Ploy.\""
+"laughs derisively. \"An amateurish blunder!\""
+"says, \"A classic Frotzen Ploy.\""
+"shrugs. \"Oh, well... If people never made mistakes, they wouldn't put
+erasers on pencils...\""
+"looks at you with scorn. \"A lukewarm Porridge Variation.\""
+"blinks. Then blinks again. \"Now I've seen EVERYTHING!\""
+"nods knowingly. \"An obvious Fublian Gambit.\""
+"offers you some advice. \"Remember the words of Leo 'the Lip' Flathead: 'Nice
+guys finish last.'\"" "under Miznian rules!\""
+"without a note from your doctor!\""
+"except after a third-level Hamster Substitution!\""
+"in a coastal city without first eating the rind of a burnt casaba melon!\""
+"chortles gratingly. \"Who taught you how to play cards? Vanna Flathead?\"">> 
+<CONSTANT F-SCORES <PTABLE 0 0 0 24 10 28 41 -12 -81 37 54 -29 17 66 -35 14 18
+13 -79 -41 -15 60 64 -99 10 -73 12 -55 -20 -77 -11 -14 0 0 0 0 -38>> 
+<OBJECT BROOM (LOC LOCAL-GLOBALS) (DESC "broom") (SYNONYM BROOM) (SIZE 10) (
+FLAGS TAKEBIT TRYTAKEBIT)> 
+<ROOM SANDBAR (LOC ROOMS) (DESC "Sandbar") (REGION "Port Foozle") (LDESC
+"You are on a wide sandbar, which almost certainly vanishes at high tide.
+The only ways off the sandbar are to the north and south.") (NORTH TO
+FISHING-VILLAGE) (SOUTH TO QUILBOZZA-BEACH) (FLAGS RLANDBIT ONBIT OUTSIDEBIT) (
+SYNONYM SANDBAR) (GLOBAL FLATHEAD-OCEAN) (MAP-LOC <PTABLE FOOZLE-MAP-NUM
+MAP-GEN-Y-5 MAP-GEN-X-2>)> 
+<ROOM QUILBOZZA-BEACH (LOC ROOMS) (DESC "Quilbozza Beach") (REGION
+"Port Foozle") (LDESC
+"You are on a wide beach of fine pinkish-white sand. The ocean stretches
+west to the horizon. Due to the low tide, it looks as if you could travel
+north. In addition, tunnels open to the northeast and southeast.") (NORTH TO
+SANDBAR) (NE TO SALTY-SMELL) (SE TO WARNING-ROOM) (FLAGS RLANDBIT ONBIT
+OUTSIDEBIT) (SYNONYM BEACH) (ADJECTIVE QUILBOZZA) (GLOBAL FLATHEAD-OCEAN) (
+RESEARCH "\"Quilbozza, just south of Port Foozle, is considered the nicest beachfront
+in the eastlands, if not all of Quendor.\"") (MAP-LOC <PTABLE FOOZLE-MAP-NUM
+MAP-GEN-Y-6 MAP-GEN-X-2>) (ICON QUILBOZZA-BEACH-ICON) (ACTION QUILBOZZA-BEACH-F
+)> 
+<DEFINE-ROUTINE QUILBOZZA-BEACH-F> 
+<ROOM WARNING-ROOM (LOC ROOMS) (DESC "Warning Room") (REGION "Port Foozle") (
+LDESC "You are in a tunnel which curves northwest and northeast. The tunnel rises
+at the latter end, and passes a large, eye-catching sign.") (NW TO
+QUILBOZZA-BEACH) (DOWN TO QUILBOZZA-BEACH) (NE TO ROOM-OF-THREE-DOORS) (UP TO
+ROOM-OF-THREE-DOORS) (FLAGS RLANDBIT UNDERGROUNDBIT) (GLOBAL SIGN) (ICON
+WARNING-ROOM-ICON) (MAP-LOC <PTABLE FOOZLE-MAP-NUM MAP-GEN-Y-7 MAP-GEN-X-3>)> 
+<ROOM ROOM-OF-THREE-DOORS (LOC ROOMS) (DESC "Room of Three Doors") (REGION
+"Port Foozle") (SW TO WARNING-ROOM) (OUT TO WARNING-ROOM) (IN SORRY
+"Pick a door... any door...") (FLAGS RLANDBIT UNDERGROUNDBIT) (MAP-LOC <PTABLE
+FOOZLE-MAP-NUM MAP-GEN-Y-6 MAP-GEN-X-4>) (ICON ROOM-OF-3-DOORS-ICON) (ACTION
+ROOM-OF-THREE-DOORS-F)> 
+<GLOBAL VERITASSI-DOOR <>> 
+<GLOBAL PREVARICON-DOOR <>> 
+<GLOBAL WISHYFOO-DOOR <>> 
+<GLOBAL WRITING-CHANGED <>> 
+<DEFINE-ROUTINE ROOM-OF-THREE-DOORS-F> 
+<OBJECT LEFT-DOOR (LOC ROOM-OF-THREE-DOORS) (DESC "left door") (SYNONYM DOOR
+WRITING) (ADJECTIVE LEFT FIRST) (FLAGS DOORBIT NDESCBIT) (OWNER LEFT-DOOR) (
+ACTION THREE-DOORS-F)> 
+<OBJECT RIGHT-DOOR (LOC ROOM-OF-THREE-DOORS) (DESC "right door") (SYNONYM DOOR
+WRITING) (ADJECTIVE RIGHT THIRD) (FLAGS DOORBIT NDESCBIT) (OWNER RIGHT-DOOR) (
+ACTION THREE-DOORS-F)> 
+<OBJECT CENTER-DOOR (LOC ROOM-OF-THREE-DOORS) (DESC "center door") (SYNONYM
+DOOR WRITING) (ADJECTIVE CENTER MIDDLE SECOND) (FLAGS DOORBIT NDESCBIT) (OWNER
+CENTER-DOOR) (ACTION THREE-DOORS-F)> 
+<DEFINE-ROUTINE THREE-DOORS-F> 
+<ROOM WISHYFOO-TERRITORY (LOC ROOMS) (DESC "Wishyfoo Territory") (REGION
+"Port Foozle") (LDESC
+"You are in a medium-sized cavern, which appears to have been recently
+occupied. The steep passage which brought you here leads southwest. Also,
+a passage just large enough to fit through leads downward.") (SW SORRY
+"The passage is too steep to climb back.") (UP SORRY
+"The passage is too steep to climb back.") (DOWN TO FORK) (FLAGS RLANDBIT
+UNDERGROUNDBIT) (VALUE 6) (MAP-LOC <PTABLE FOOZLE-MAP-NUM WISHYFOO-ICON-LOC
+MAP-GEN-X-4>) (ICON WISHYFOO-ICON)> 
+<OBJECT SHOVEL (LOC WISHYFOO-TERRITORY) (DESC "shovel") (SYNONYM SHOVEL) (SIZE
+20) (FLAGS TAKEBIT)> 
+<END-SEGMENT> 

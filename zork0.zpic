@@ -1,0 +1,2108 @@
+P-TITLE ;zork zero title screen
++---------------------------------------------------------------------------+
+|                  ZZZZZZZZ   OOOOOO   RRRRRRR   K       K                  |
+|                        Z   O      O  R      R  K     K                    |
+|                       Z    O      O  R      R  K   K                      |
+|                      Z     O      O  RRRRRRR   K K                        |
+|                     Z      O      O  R   R     K K                        |
+|                    Z       O      O  R    R    K   K                      |
+|                   Z        O      O  R     R   K     K                    |
+|                  ZZZZZZZZ   OOOOOO   R      R  K       K                  |
+|                                                                           |
+|                  ZZZZZZZZ  EEEEEEEE  RRRRRRR    OOOOOO                    |
+|                        Z   E         R      R  O      O                   |
+|                       Z    E         R      R  O      O                   |
+|                      Z     EEEEEE    RRRRRRR   O      O                   |
+|                     Z      E         R   R     O      O                   |
+|                    Z       E         R    R    O      O                   |
+|                   Z        E         R     R   O      O                   |
+|                  ZZZZZZZZ  EEEEEEEE  R      R   OOOOOO                    |
+|                                                                           |
+|                      *** THE REVENGE OF MEGABOZ ***                       |
++---------------------------------------------------------------------------+
+
+PROLOGUE-LETTER ;illuminated letter at opening of prologue
+   ^   
+  / \  
+ /---\ 
+/     \
+
+MAIN-LETTER ;illuminated letter at opening of main body of game
+ \   / 
+  \ / 
+   |  
+   |   
+
+EPILOGUE-LETTER ;illuminated letter at opening of epilogue
+   ^   
+  / \  
+ /---\ 
+/     \
+
+CASTLE-BORDER ;screen border when you're in the castle
+|                                       N                                    |
+|                                   NW  ^  NE                                |
+|                                   W  /|\  E                                |
+|                                   SW  S  SE                                |
+
+OUTSIDE-BORDER ;screen border when you're outdoors
+|                                       N                                    |
+|                                   NW  ^  NE                                |
+|                                   W  /|\  E                                |
+|                                   SW  S  SE                                |
+
+UNDERGROUND-BORDER ;screen border when you're underground
+|                                       N                                    |
+|                                   NW  ^  NE                                |
+|                                   W  /|\  E                                |
+|                                   SW  S  SE                                |
+
+HINT-BORDER ;screen border for when you're using on-line hints
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+????                                                                       ????
+
+N-HL ;highlighted NORTH point on status line compass rose
+    N
+
+NE-HL ;highlighted NORTHEAST point on status line compass rose
+
+      NE
+
+E-HL ;highlighted EAST point on status line compass rose
+
+
+        E
+
+SE-HL ;highlighted SOUTHEAST point on status line compass rose
+
+
+
+      SE
+
+S-HL ;highlighted SOUTH point on status line compass rose
+
+
+
+    S
+
+SW-HL ;highlighted SOUTHWEST point on status line compass rose
+
+
+
+ SW
+
+W-HL ;highlighted WEST point on status line compass rose
+
+
+W
+
+NW-HL ;highlighted NW point on status line compass rose
+
+ NW
+
+N-UNHL ;unhighlighted NORTH point on status line compass rose
+    N
+
+NE-UNHL ;unhighlighted NORTHEAST point on status line compass rose
+
+      NE
+
+E-UNHL ;unhighlighted EAST point on status line compass rose
+
+
+        E
+
+SE-UNHL ;unhighlighted SOUTHEAST point on status line compass rose
+
+
+
+      SE
+
+S-UNHL ;unhighlighted SOUTH point on status line compass rose
+
+
+
+    S
+
+SW-UNHL ;unhighlighted SOUTHWEST point on status line compass rose
+
+
+
+ SW
+
+W-UNHL ;unhighlighted WEST point on status line compass rose
+
+
+W
+
+NW-UNHL ;unhighlighted NW point on status line compass rose
+
+ NW
+
+ENC-BORDER ;border for encyclopedia entries with illustrations
++-----------------------------------------------------------------------------+
+|                           ENCYCLOPEDIA FROBOZZICA                           |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+ZILBEETHA-ILL ;encyclopedia entry for Zilbeetha
++-----------------------+
+|                       |
+|                       |
+|                       |
+|                       |
+|     illustration      |
+|          of           |
+|       Zilbeetha       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
++-----------------------+
+
+BROGMOIDISM-ILL ;encyclopedia entry for Brogmoidism
++-----------------------+
+|                       |
+|                       |
+|                       |
+|                       |
+|     illustration      |
+|          of           |
+|      Brogmoidism      |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
++-----------------------+
+
+DIMWIT-ILL ;encyclopedia entry for Dimwit Flathead
++-----------------------+
+|                       |
+|                       |
+|                       |
+|                       |
+|     illustration      |
+|          of           |
+|        Dimwit         |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
++-----------------------+
+
+MEGABOZ-ILL ;encyclopedia entry for Megaboz
++-----------------------+
+|                       |
+|                       |
+|                       |
+|                       |
+|     illustration      |
+|          of           |
+|        Megaboz        |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
++-----------------------+
+
+J-ILL ;encyclopedia entry for Jester
++-----------------------+
+|                       |
+|                       |
+|                       |
+|                       |
+|     illustration      |
+|          of           |
+|       torn page       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
++-----------------------+
+
+FLATHEADIA-ILL ;encyclopedia entry for Flatheadia
++-----------------------+
+|                       |
+|                       |
+|                       |
+|                       |
+|     illustration      |
+|          of           |
+|      Flatheadia       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
++-----------------------+
+
+FR-ILL ;encyclopedia entry for Frobozzco
++-----------------------+
+|                       |
+|                       |
+|                       |
+|                       |
+|     illustration      |
+|          of           |
+|       FrobozzCo       |
+|       Building        |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
++-----------------------+
+
+FOUR-FLIES-ILL ;encyclopedia entry for Four Fantastic Flies of Famathria
++-----------------------+
+|                       |
+|                       |
+|                       |
+|                       |
+|     illustration      |
+|          of           |
+|      ceremonial       |
+|      flyswatter       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
+|                       |
++-----------------------+
+
+REBUS-0 ;the entire rebus, as seen in mirror image
++---------------------------------------------------------------------------+
+|                                                                           |
+|                                                                           |
+|                                                                           |
+|        (TIE)   +   (BIRD)   -   (B)                  (PIE)   +   N        |
+|                                                                           |
+|                                                                           |
+|        (EYE)   +   (URN)                          (MIND)   -   (D)        |
+|                                                                           |
+|                                                                           |
+|        (W)   +   (OAR)                                                    |
+|                                                                           |
+|                                                                           |
+|        (MATCH)   +   (CHICK)                       (STORM)  -  (M)        |
+|                                                                           |
+|                                                                           |
+|                                                                           |
++---------------------------------------------------------------------------+
+
+REBUS-1 ;the rebus with 1 covering animal
++---------------------------------------------------------------------------+
+| FISHFISHFISHFIS                                                           |
+| ISHFISHFISHFISH                                                           |
+| SHFISHFISHFISHF                                                           |
+| HFISHFISHFISHFI+   (BIRD)   -   (B)                  (PIE)   +   N        |
+| FISHFISHFISHFIS                                                           |
+| ISHFISHFISHFISH                                                           |
+| SHFISHFISHFISHF+   (URN)                          (MIND)   -   (D)        |
+| HFISHFISHFISHFI                                                           |
+| FISHFISHFISHFIS                                                           |
+|        (W)   +   (OAR)                                                    |
+|                                                                           |
+|                                                                           |
+|        (MATCH)   +   (CHICK)                       (STORM)  -  (M)        |
+|                                                                           |
+|                                                                           |
+|                                                                           |
++---------------------------------------------------------------------------+
+
+REBUS-2 ;the rebus with 2 covering animals
++---------------------------------------------------------------------------+
+| FISHFISHFISHFIS            SNAKESNAKESNAKESN                              |
+| ISHFISHFISHFISH            NAKESNAKESNAKESNA                              |
+| SHFISHFISHFISHF            AKESNAKESNAKESNAK                              |
+| HFISHFISHFISHFI+   (BIRD)  KESNAKESNAKESNAKE         (PIE)   +   N        |
+| FISHFISHFISHFIS            ESNAKESNAKESNAKES                              |
+| ISHFISHFISHFISH                                                           |
+| SHFISHFISHFISHF+   (URN)                          (MIND)   -   (D)        |
+| HFISHFISHFISHFI                                                           |
+| FISHFISHFISHFIS                                                           |
+|        (W)   +   (OAR)                                                    |
+|                                                                           |
+|                                                                           |
+|        (MATCH)   +   (CHICK)                       (STORM)  -  (M)        |
+|                                                                           |
+|                                                                           |
+|                                                                           |
++---------------------------------------------------------------------------+
+
+REBUS-3 ;the rebus with 3 covering animals
++---------------------------------------------------------------------------+
+| FISHFISHFISHFIS            SNAKESNAKESNAKESN                              |
+| ISHFISHFISHFISH            NAKESNAKESNAKESNA                              |
+| SHFISHFISHFISHF            AKESNAKESNAKESNAK                              |
+| HFISHFISHFISHFI+   (BIRD)  KESNAKESNAKESNAKE         (PIE)   +   N        |
+| FISHFISHFISHFIS            ESNAKESNAKESNAKES                              |
+| ISHFISHFISHFISH                                                           |
+| SHFISHFISHFISHF+   (URN)   CAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELC |
+| HFISHFISHFISHFI            AMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCA |
+| FISHFISHFISHFIS            MELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAM |
+|        (W)   +   (OAR)     ELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAME |
+|                            LCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMEL |
+|                            CAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELC |
+|        (MATCH)   +   (CHICKAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCA |
+|                            MELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAM |
+|                            ELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAME |
+|                            LCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMEL |
++---------------------------------------------------------------------------+
+
+REBUS-4 ;the rebus with 4 covering animals
++---------------------------------------------------------------------------+
+| FISHFISHFISHFIS            SNAKESNAKESNAKESN  SLIMESLIMESLIMESLIMESLIMESL |
+| ISHFISHFISHFISH            NAKESNAKESNAKESNA  LIMESLIMESLIMESLIMESLIMESLI |
+| SHFISHFISHFISHF            AKESNAKESNAKESNAK  IMESLIMESLIMESLIMESLIMESLIM |
+| HFISHFISHFISHFI+   (BIRD)  KESNAKESNAKESNAKE  MESLIMESLIMESLIMESLIMESLIME |
+| FISHFISHFISHFIS            ESNAKESNAKESNAKES  ESLIMESLIMESLIMESLIMESLIMES |
+| ISHFISHFISHFISH                                                           |
+| SHFISHFISHFISHF+   (URN)   CAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELC |
+| HFISHFISHFISHFI            AMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCA |
+| FISHFISHFISHFIS            MELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAM |
+|        (W)   +   (OAR)     ELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAME |
+|                            LCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMEL |
+|                            CAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELC |
+|        (MATCH)   +   (CHICKAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCA |
+|                            MELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAM |
+|                            ELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAME |
+|                            LCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMEL |
++---------------------------------------------------------------------------+
+
+REBUS-5 ;the rebus with 5 covering animals
++---------------------------------------------------------------------------+
+| FISHFISHFISHFIS  GOOSEGOO  SNAKESNAKESNAKESN  SLIMESLIMESLIMESLIMESLIMESL |
+| ISHFISHFISHFISH  OOSEGOOS  NAKESNAKESNAKESNA  LIMESLIMESLIMESLIMESLIMESLI |
+| SHFISHFISHFISHF  OSEGOOSE  AKESNAKESNAKESNAK  IMESLIMESLIMESLIMESLIMESLIM |
+| HFISHFISHFISHFI+ SEGOOSEG  KESNAKESNAKESNAKE  MESLIMESLIMESLIMESLIMESLIME |
+| FISHFISHFISHFIS  EGOOSEGO  ESNAKESNAKESNAKES  ESLIMESLIMESLIMESLIMESLIMES |
+| ISHFISHFISHFISH  GOOSEGOO                                                 |
+| SHFISHFISHFISHF+ OOSEGOOS  CAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELC |
+| HFISHFISHFISHFI  OSEGOOSE  AMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCA |
+| FISHFISHFISHFIS  SEGOOSEG  MELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAM |
+|        (W)   +   (OAR)     ELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAME |
+|                            LCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMEL |
+|                            CAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELC |
+|        (MATCH)   +   (CHICKAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCA |
+|                            MELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAM |
+|                            ELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAME |
+|                            LCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMEL |
++---------------------------------------------------------------------------+
+
+REBUS-6 ;the rebus with 6 covering animals
++---------------------------------------------------------------------------+
+| FISHFISHFISHFIS  GOOSEGOO  SNAKESNAKESNAKESN  SLIMESLIMESLIMESLIMESLIMESL |
+| ISHFISHFISHFISH  OOSEGOOS  NAKESNAKESNAKESNA  LIMESLIMESLIMESLIMESLIMESLI |
+| SHFISHFISHFISHF  OSEGOOSE  AKESNAKESNAKESNAK  IMESLIMESLIMESLIMESLIMESLIM |
+| HFISHFISHFISHFI+ SEGOOSEG  KESNAKESNAKESNAKE  MESLIMESLIMESLIMESLIMESLIME |
+| FISHFISHFISHFIS  EGOOSEGO  ESNAKESNAKESNAKES  ESLIMESLIMESLIMESLIMESLIMES |
+| ISHFISHFISHFISH  GOOSEGOO                                                 |
+| SHFISHFISHFISHF+ OOSEGOOS  CAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELC |
+| HFISHFISHFISHFI  OSEGOOSE  AMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCA |
+| FISHFISHFISHFIS  SEGOOSEG  MELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAM |
+|        (W)   +   (OAR)     ELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAME |
+| MOUSEMOUSEMOUSEMOUSEMOUSE  LCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMEL |
+| OUSEMOUSEMOUSEMOUSEMOUSEM  CAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELC |
+| USEMOUSEMOUSEMOUSEMOUSEMOCKAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCA |
+| SEMOUSEMOUSEMOUSEMOUSEMOU  MELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAM |
+| EMOUSEMOUSEMOUSEMOUSEMOUS  ELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAME |
+| MOUSEMOUSEMOUSEMOUSEMOUSE  LCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMELCAMEL |
++---------------------------------------------------------------------------+
+
+B-BORDER ;the border for Tower of Bozbar, including the three pegs
+                              Tower of Bozbar                              
+
+
+
+
+
+                       I               I               I
+                       I               I               I
+                       I               I               I
+                       I               I               I
+                       I               I               I
+                       I               I               I
+                       I               I               I
+              XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+B-RESTORE-PEG ;restoring the bit of peg when a weight is moved
+      I      
+
+B-1-WEIGHT ;the 1-ugh weight from the Tower of Bozbar
+     *1*     
+
+B-2-WEIGHT ;the 2-ugh weight from the Tower of Bozbar
+    **2**    
+
+B-3-WEIGHT ;the 3-ugh weight from the Tower of Bozbar
+   ***3***   
+
+B-4-WEIGHT ;the 4-ugh weight from the Tower of Bozbar
+  ****4****  
+
+B-5-WEIGHT ;the 5-ugh weight from the Tower of Bozbar
+ *****5***** 
+
+B-6-WEIGHT ;the 6-ugh weight from the Tower of Bozbar
+******6******
+
+PBOZ-BORDER ;the border for Peggleboz, including the pegboard itself
+                                  Peggleboz                                
+
+
+                                     .a  .b
+                                       .c
+                                     .d  .e
+                                   .f  .g  .h
+                                 .i  .j  .k  .l
+                           .m  .n  .o  .p  .q  .r  .s
+                             .t                  .u
+
+UNHL-PEG ;the unhighlighted peg
+l
+
+HL-PEG ;the highlighted peg
+l
+
+BG-A ;restore background when peg at A is moved
+.
+
+BG-B ;restore background when peg at B is moved
+.
+
+BG-C ;restore background when peg at C is moved
+.
+
+BG-D ;restore background when peg at D is moved
+.
+
+BG-E ;restore background when peg at E is moved
+.
+
+BG-F ;restore background when peg at F is moved
+.
+
+BG-G ;restore background when peg at G is moved
+.
+
+BG-H ;restore background when peg at H is moved
+.
+
+BG-I ;restore background when peg at I is moved
+.
+
+BG-J ;restore background when peg at J is moved
+.
+
+BG-K ;restore background when peg at K is moved
+.
+
+BG-L ;restore background when peg at L is moved
+.
+
+BG-M ;restore background when peg at M is moved
+.
+
+BG-N ;restore background when peg at N is moved
+.
+
+BG-O ;restore background when peg at O is moved
+.
+
+BG-P ;restore background when peg at P is moved
+.
+
+BG-Q ;restore background when peg at Q is moved
+.
+
+BG-R ;restore background when peg at R is moved
+.
+
+BG-S ;restore background when peg at S is moved
+.
+
+BG-T ;restore background when peg at T is moved
+.
+
+BG-U ;restore background when peg at U is moved
+.
+
+SN-BORDER ;border for Snarfem
+                                 Snarfem                                   
+
+
+
+
+
+
+
+
+
+                   1            2            3            4                  
+
+PILE-OF-0 ;an empty pile for Snarfem
+       
+       
+       
+
+PILE-OF-1 ;a pile of 1 pebbles for Snarfem
+       
+       
+   @   
+
+PILE-OF-2 ;a pile of 2 pebbles for Snarfem
+       
+       
+@  @   
+
+PILE-OF-3 ;a pile of 3 pebbles for Snarfem
+       
+       
+@  @  @
+
+PILE-OF-4 ;a pile of 4 pebbles for Snarfem
+       
+      @
+@  @  @
+
+PILE-OF-5 ;a pile of 5 pebbles for Snarfem
+       
+@  @   
+@  @  @
+
+PILE-OF-6 ;a pile of 6 pebbles for Snarfem
+       
+@  @  @
+@  @  @
+
+PILE-OF-7 ;a pile of 7 pebbles for Snarfem
+@      
+@  @  @
+@  @  @
+
+PILE-OF-8 ;a pile of 8 pebbles for Snarfem
+   @  @
+@  @  @
+@  @  @
+
+PILE-OF-9 ;a pile of 9 pebbles for Snarfem
+@  @  @
+@  @  @
+@  @  @
+
+R-FLOWERS-0 ;right-hand corner flowers with none blooming
+.  .  .
+.  .  .
+.  .  .
+
+R-FLOWERS-1 ;right-hand corner flowers with 1 blooming
+.  .  .
+.  *  .
+.  .  .
+
+R-FLOWERS-2 ;right-hand corner flowers with 2 blooming
+*  .  .
+.  .  *
+.  .  .
+
+R-FLOWERS-3 ;right-hand corner flowers with 3 blooming
+.  *  .
+*  .  .
+.  .  *
+
+R-FLOWERS-4 ;right-hand corner flowers with 4 blooming
+*  .  .
+*  .  *
+.  *  .
+
+R-FLOWERS-5 ;right-hand corner flowers with 5 blooming
+.  *  *
+*  .  *
+*  .  .
+
+R-FLOWERS-6 ;right-hand corner flowers with 6 blooming
+.  *  .
+*  *  *
+*  *  .
+
+R-FLOWERS-7 ;right-hand corner flowers with 7 blooming
+*  *  *
+*  .  *
+.  *  *
+
+R-FLOWERS-8 ;right-hand corner flowers with 8 blooming
+*  *  .
+*  *  *
+*  *  *
+
+R-FLOWERS-9 ;right-hand corner flowers with 9 blooming
+*  *  *
+*  *  *
+*  *  *
+
+L-FLOWERS-0 ;left-hand corner flowers with none blooming
+.  .  .
+.  .  .
+.  .  .
+
+L-FLOWERS-1 ;left-hand corner flowers with 1 blooming
+.  .  *
+.  .  .
+.  .  .
+
+L-FLOWERS-2 ;left-hand corner flowers with 2 blooming
+.  *  .
+.  .  .
+*  .  .
+
+L-FLOWERS-3 ;left-hand corner flowers with 3 blooming
+*  .  *
+.  .  .
+.  *  .
+
+L-FLOWERS-4 ;left-hand corner flowers with 4 blooming
+*  .  .
+.  *  *
+.  *  .
+
+F-BORDER ;border for Double Fanucci
+                               Double Fanucci                              
+
+F-CARD-BACK ;back of a Double Fanucci card
++--------+
+| FFFFFF |
+| F      |
+| FFFF   |
+| F      |
+| F      |
++--------+
+
+F-CARD ;outline of a card before adding rank and suit
++--------+
+|        |
+|        |
+|        |
+|        |
+|        |
++--------+
+
+F-INKBLOTS ;right-side-up black icon for Inkblots suit
+IB
+
+F-PLUNGERS ;right-side-up black icon for Plungers suit
+PL
+
+F-BUGS ;right-side-up black icon for Bugs suit
+BG
+
+F-ZURFS ;right-side-up black icon for Zurfs suit
+ZF
+
+F-EARS ;right-side-up black icon for Ears suit
+ER
+
+F-TOPS ;right-side-up black icon for Tops suit
+TP
+
+F-RAIN ;right-side-up black icon for Rain suit
+RN
+
+F-HIVES ;right-side-up black icon for Hives suit
+HV
+
+F-FACES ;right-side-up black icon for Faces suit
+FC
+
+F-MAZES ;right-side-up black icon for Mazes suit
+MZ
+
+F-LAMPS ;right-side-up black icon for Lamps suit
+LP
+
+F-TIME ;right-side-up black icon for Time suit
+TM
+
+F-BOOKS ;right-side-up black icon for Books suit
+BK
+
+F-SCYTHES ;right-side-up black icon for Scythes suit
+SC
+
+F-FROMPS ;right-side-up black icon for Fromps suit
+FR
+
+F-RV-INKBLOTS ;upside-down black icon for Inkblots suit
+IB
+
+F-RV-PLUNGERS ;upside-down black icon for Plungers suit
+PL
+
+F-RV-BUGS ;upside-down black icon for Bugs suit
+BG
+
+F-RV-ZURFS ;upside-down black icon for Zurfs suit
+ZF
+
+F-RV-EARS ;upside-down black icon for Ears suit
+ER
+
+F-RV-TOPS ;upside-down black icon for Tops suit
+TP
+
+F-RV-RAIN ;upside-down black icon for Rain suit
+RN
+
+F-RV-HIVES ;upside-down black icon for Hives suit
+HV
+
+F-RV-FACES ;upside-down black icon for Faces suit
+FC
+
+F-RV-MAZES ;upside-down black icon for Mazes suit
+MZ
+
+F-RV-LAMPS ;upside-down black icon for Lamps suit
+LP
+
+F-RV-TIME ;upside-down black icon for Time suit
+TM
+
+F-RV-BOOKS ;upside-down black icon for Books suit
+BK
+
+F-RV-SCYTHES ;upside-down black icon for Scythes suit
+SC
+
+F-RV-FROMPS ;upside-down black icon for Fromps suit
+FR
+
+F-0 ;right-side-up black 0 for Double Fanucci
+ 0
+
+F-1 ;right-side-up black 1 for Double Fanucci
+ 1
+
+F-2 ;right-side-up black 2 for Double Fanucci
+ 2
+
+F-3 ;right-side-up black 3 for Double Fanucci
+ 3
+
+F-4 ;right-side-up black 4 for Double Fanucci
+ 4
+
+F-5 ;right-side-up black 5 for Double Fanucci
+ 5
+
+F-6 ;right-side-up black 6 for Double Fanucci
+ 6
+
+F-7 ;right-side-up black 7 for Double Fanucci
+ 7
+
+F-8 ;right-side-up black 8 for Double Fanucci
+ 8
+
+F-9 ;right-side-up black 9 for Double Fanucci
+ 9
+
+F-INFINITY ;right-side-up black infinity for Double Fanucci
+00
+
+F-RV-0 ;upside-down black 0 for Double Fanucci
+ 0
+
+F-RV-1 ;upside-down black 1 for Double Fanucci
+ 1
+
+F-RV-2 ;upside-down black 2 for Double Fanucci
+ 2
+
+F-RV-3 ;upside-down black 3 for Double Fanucci
+ 3
+
+F-RV-4 ;upside-down black 4 for Double Fanucci
+ 4
+
+F-RV-5 ;upside-down black 5 for Double Fanucci
+ 5
+
+F-RV-6 ;upside-down black 6 for Double Fanucci
+ 6
+
+F-RV-7 ;upside-down black 7 for Double Fanucci
+ 7
+
+F-RV-8 ;upside-down black 8 for Double Fanucci
+ 8
+
+F-RV-9 ;upside-down black 9 for Double Fanucci
+ 9
+
+F-RV-INFINITY ;upside-down black infinity for Double Fanucci
+00
+
+F-GRANOLA ;granola face card for Double Fanucci
++--------+
+|        |
+| vvvvvv |
+| GRNOLA |
+| ^^^^^^ |
+|        |
++--------+
+
+F-LOBSTER ;lobster face card for Double Fanucci
++--------+
+|        |
+| vvvvvv |
+| LBSTER |
+| ^^^^^^ |
+|        |
++--------+
+
+F-SNAIL ;snail face card for Double Fanucci
++--------+
+|        |
+| vvvvvv |
+| SNAIL  |
+| ^^^^^^ |
+|        |
++--------+
+
+F-JESTER ;jester face card for Double Fanucci
++--------+
+|        |
+| vvvvvv |
+| JESTER |
+| ^^^^^^ |
+|        |
++--------+
+
+F-HOURGLASS ;hourglass face card for Double Fanucci
++--------+
+|        |
+| vvvvvv |
+|  TIME  |
+| ^^^^^^ |
+|        |
++--------+
+
+F-LIGHT ;candle face card for Double Fanucci
++--------+
+|        |
+| vvvvvv |
+| LIGHT  |
+| ^^^^^^ |
+|        |
++--------+
+
+F-BEAUTY ;rose face card for Double Fanucci
++--------+
+|        |
+| vvvvvv |
+| BEAUTY |
+| ^^^^^^ |
+|        |
++--------+
+
+F-DEATH ;executioner face card for Double Fanucci
++--------+
+|        |
+| vvvvvv |
+| DEATH  |
+| ^^^^^^ |
+|        |
++--------+
+
+F-GRUE ;grue face card for Double Fanucci
++--------+
+|        |
+| vvvvvv |
+|  GRUE  |
+| ^^^^^^ |
+|        |
++--------+
+
+MAP-BORDER ;border for on-screen maps
+     +--------------------------------------------------------------------+
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     |                                                                    |
+     +--------------------------------------------------------------------+
+
+MAIN-TITLE ;title for main floor on-screen map
+  THE
+  MAIN
+ FLOOR
+OF THE CASTLE
+
+SECRET-WING-TITLE ;title for secret wing on-screen map
+    THE
+SECRET WING
+   OF THE
+   CASTLE
+
+VILLAGE-TITLE ;title for village area on-screen map
+  THE
+VILLAGE
+AREA OF
+  THE
+CASTLE
+
+LOWER-LEVEL-TITLE ;title for lower levels on-screen map
+    THE
+LOWER LEVELS
+   OF THE
+   CASTLE
+
+LAKE-TITLE ;title for Lake Flathead on-screen map
+   THE
+LAKE AREA
+  OF THE
+  CASTLE
+
+DESERT-TITLE ;title for the desert area on-screen map
+      THE
+GREAT UNDERGROUND
+     DESERT
+
+FOOZLE-TITLE ;title for the Port Foozle on-screen map
+ PORT
+FOOZLE
+
+FENSHIRE-TITLE ;title for the Fenshire on-screen map
+     THE
+SUMMER CASTLE
+ AT FENSHIRE
+
+FJORD-TITLE ;title for the fjord area on-screen map
+  THE
+FLATHEAD
+ FJORD
+
+GRAY-MTS-TITLE ;title for the Gray Mountains on-screen map
+   THE
+   GRAY
+MOUNTAINS
+
+DELTA-TITLE ;title for the delta area on-screen map
+    THE
+FRIGID RIVER
+   DELTA
+
+FUBLIO-TITLE ;title for the Fublio Valley on-screen map
+FUBLIO
+VALLEY
+
+ANTHARIA-TITLE ;title for the Antharia on-screen map
+ANTHARIA
+
+FOOZLE-MAP-ILL ;illustration for Port Foozle on-screen map
+   _       /\/\
+  /|\     /    \______
+ / | \    |    |  O  O
+~~~~~~~~~~|    |  O  O
+~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
+
+FENSHIRE-MAP-ILL ;illustration for Fenshire on-screen map
+     ________| II |
+     |            |
+   ,///''       ``\\\
+--------------------------------
+  lllll                llllll
+    lllllll          llllll
+        llllllllllllllll
+
+FJORD-MAP-ILL ;illustration for Fjord on-screen map
+             ______/------\______
+         __/      /        |      \_
+        /        |          \        \
+----------------------------------------
+
+GRAY-MTS-MAP-ILL ;illustration for Gray Mountains on-screen map
+        /--\__/-\
+-------/         \----------------------
+  /\  /           \    /--\
+ /  \/             \  /    \
+     \              \/      \
+      \             /        \
+       \___________/
+
+DELTA-MAP-ILL ;illustration for Delta on-screen map
+__/\______/  \_/ \______
+      \
+       \\
+       /|\\
+   __//||\\\\___
+
+ANTHARIA-MAP-ILL ;illustration for Antharia on-screen map
+           cccccc
+     ccc   cccccc
+    ccccc    __________
+     ccc    /    /   /
+~~~~~~~~~~~~    /   /
+~~~~~~~~~~     ... . ..
+~~~~~~~~~~~~ ..  .   .
+~~~~~~~~~~    .   . .
+~~~~~~~~   . ....  .  .
+
+HORIZONTAL-LEGEND ;horizontally-aspected legend box for on-screen maps
++--------------------+
+| Legend             |
+| -------   >>>>>>>  |
+| ------>   - - - -  |
++--------------------+
+
+VERTICAL-LEGEND ;vertically-aspected legend box for on-screen maps
++--------+
+| Legend |
+|        |
+| ------ |
+| -----> |
+| >>>>>> |
+|        |
++--------+
+
+N-S-CON ;north-south room connector for on-screen maps
+ || 
+
+E-W-CON ;east-west room connector for on-screen maps
+__
+--
+
+NE-SW-CON ;northeast-southwest room connector for on-screen maps
+//
+
+NW-SE-CON ;northwest-southeast room connector for on-screen maps
+\\
+
+DOWN-NORTH-SYMBOL ;when down is show to the north on an on-screen map
+ ^   
+
+DOWN-SOUTH-SYMBOL ;when down is shown to the south on an on-screen map
+ v   
+
+DOWN-EAST-SYMBOL ;when down is shown to the east on an on-screen map
+>>
+
+DOWN-WEST-SYMBOL ;when down is shown to the west on an on-screen map
+<<
+
+DOWN-NE-SYMBOL ;when down is shown to the northeast on an on-screen map
+,'
+
+DOWN-NW-SYMBOL ;when down is shown to the northwest on an on-screen map
+`.
+
+DOWN-SW-SYMBOL ;when down is shown to the southwest on an on-screen map
+,'
+
+DOWN-SE-SYMBOL ;when down is shown to the southeast on an on-screen map
+`.
+
+TELEPORT-ARROW ;shows where the oracle teleports you on on-screen maps
+ ||
+\||/
+ \/
+
+RV-TELEPORT-ARROW ;also shows where the oracle teleports you
+ /\
+/||\
+ ||
+
+ARCH-N-CON ;special-case for Crag and Natural Arch
+  ____
+ /____\
+//    \\
+
+ARCH-S-CON ;special-case for Crag and Natural Arch
+\\____//
+ \____/
+
+RUBBLE-NW-CON ;special-case for Rubble Room & Heart of Mine
+ ____
+/,---
+||
+
+RUBBLE-SE-CON ;special-case for Rubble Room & Heart of Mine
+   ||
+___'/
+---'
+
+ICONLESS-ROOM-BOX ;box for rooms without icons for on-screen maps
+|''|
+|,,|
+
+YOU-ARE-HERE-SYMBOL ;blinks w/ room icon to show current room on on-screen map
+\\//
+//\\
+
+GONDOLA-ICON ;map icon for Gondola room
+|Go|
+|Go|
+
+PEG-ROOM-ICON ;map icon for Peg Room
+|PR|
+|PR|
+
+WEST-WING-ICON ;map icon for West Wing room
+|WW|
+|WW|
+
+GYM-ICON ;map icon for Gym room
+|Gy|
+|Gy|
+
+TORCH-ROOM-ICON ;map icon for Torch Room
+|TR|
+|TR|
+
+ROOF-ICON ;map icon for Roof room
+|Rf|
+|Rf|
+
+PARLOR-ICON ;map icon for Parlor room
+|Pa|
+|Pa|
+
+FORMAL-GARDEN-ICON ;map icon for Formal Garden room
+|FG|
+|FG|
+
+BALCONY-ICON ;map icon for Balcony room
+|Ba|
+|Ba|
+
+GALLERY-ICON ;map icon for Gallery room
+|Ga|
+|Ga|
+
+THRONE-ROOM-ICON ;map icon for Throne Room
+|TR|
+|TR|
+
+BANQUET-HALL-ICON ;map icon for Banquet Hall room
+|BH|
+|BH|
+
+KITCHEN-ICON ;map icon for Kitchen room
+|Ki|
+|Ki|
+
+WINE-CELLAR-ICON ;map icon for Wine Cellar room
+|WC|
+|WC|
+
+LIBRARY-ICON ;map icon for Library room
+|Li|
+|Li|
+
+EAST-WING-ICON ;map icon for East Wing room
+|EW|
+|EW|
+
+CHAPEL-ICON ;map icon for Chapel room
+|Ch|
+|Ch|
+
+J-QUARTER-ICON ;map icon for Jester's Quarters room
+|JQ|
+|JQ|
+
+PYRAMID-ICON ;map icon for Pyramid Room
+|PR|
+|PR|
+
+DIMWITS-ROOM-ICON ;map icon for Dimwit's Room
+|DR|
+|DR|
+
+MAGIC-CLOSET-ICON ;map icon for Magic Clothes Closet room
+|MC|
+|MC|
+
+PARAPET-ICON ;map icon for Parapet room
+|Pa|
+|Pa|
+
+BASTION-ICON ;map icon for Bastion room
+|Ba|
+|Ba|
+
+SECRET-PASSAGE-ICON ;map icon for Secret Passage room
+|SP|
+|SP|
+
+TEE-ICON ;map icon for Tee room
+|Te|
+|Te|
+
+TOP-OF-STAIR-ICON ;map icon for Top of Stair room
+|TS|
+|TS|
+
+BOTTOM-OF-STAIR-ICON ;map icon for Bottom of Stair room
+|BS|
+|BS|
+
+ORACLE-ICON ;map icon for Oracle room
+|Or|
+|Or|
+
+DUNGEON-ICON ;map icon for Dungeon room
+|Du|
+|Du|
+
+CELL-ICON ;map icon for Cell room
+|Ce|
+|Ce|
+
+PERIMETER-WALL-ICON ;map icon for Perimeter Wall room
+|PW|
+|PW|
+
+GARRISON-ICON ;map icon for Garrison room
+|Ga|
+|Ga|
+
+OUTER-BAILEY-ICON ;map icon for Outer Bailey room
+|OB|
+|OB|
+
+DRAWBRIDGE-ICON ;map icon for Drawbridge room
+|DB|
+|DB|
+
+BARBICAN-ICON ;map icon for Barbican room
+|Ba|
+|Ba|
+
+UPPER-BARBICAN-ICON ;map icon for Upper Barbican room
+|UB|
+|UB|
+
+CAUSEWAY-ICON ;map icon for Causeway room
+|CW|
+|CW|
+
+INNER-BAILEY-ICON ;map icon for Inner Bailey room
+|IB|
+|IB|
+
+URS-OFFICE-ICON ;map icon for URS Office room
+|UO|
+|UO|
+
+SHADY-PARK-ICON ;map icon for Shady Park room
+|SP|
+|SP|
+
+CHURCH-ICON ;map icon for Church room
+|Ch|
+|Ch|
+
+COURTROOM-ICON ;map icon for Courtroom room
+|CR|
+|CR|
+
+POST-OFFICE-ICON ;map icon for Post Office room
+|PO|
+|PO|
+
+FR-HQ-ICON ;map icon for FrobozzCo World HQ room
+|HQ|
+|HQ|
+
+MAGIC-SHOP-ICON ;map icon for Magic Shop room
+|MS|
+|MS|
+
+BACK-ALLEY-ICON ;map icon for Back Alley room
+|BA|
+|BA|
+
+OFFICES-ICON ;map icon for FrobozzCo Offices North room
+|FO|
+|FO|
+
+PENTHOUSE-ICON ;map icon for FrobozzCo Penthouse room
+|FP|
+|FP|
+
+ROOTS-ICON ;map icon for Hanging From Roots room
+|HR|
+|HR|
+
+EAR-ICON ;map icon for Ear room
+|Ea|
+|Ea|
+
+MOUTH-OF-CAVE-ICON ;map icon for Mouth of Cave room
+|MC|
+|MC|
+
+LEDGE-IN-PIT-ICON ;map icon for Ledge in Bottomless Pit room
+|LP|
+|LP|
+
+PASSAGE-STORAGE-ICON ;map icon for Passage Storage Room
+|PS|
+|PS|
+
+VAULT-ICON ;map icon for Vault room
+|Va|
+|Va|
+
+G-U-HIGHWAY-ICON ;map icon for Great Underground Highway room
+|UH|
+|UH|
+
+EXIT-ICON ;map icon for Exit room
+|Ex|
+|Ex|
+
+KENNELS-ICON ;map icon for Kennel room
+|Ke|
+|Ke|
+
+ROYAL-ZOO-ICON ;map icon for Zoo room
+|ZO|
+|ZO|
+
+LABORATORY-ICON ;map icon for Laboratory room
+|La|
+|La|
+
+HOLD-ICON ;map icon for Hold room
+|Ho|
+|Ho|
+
+UNDERWATER-ICON ;map icon for Underwater room
+|UW|
+|UW|
+
+LAKE-BOTTOM-ICON ;map icon for Lake Bottom room
+|LB|
+|LB|
+
+EAST-SHORE-ICON ;map icon for East Shore room
+|ES|
+|ES|
+
+WEST-SHORE-ICON ;map icon for West Shore room
+|WS|
+|WS|
+
+NORTH-SHORE-ICON ;map icon for North Shore room
+|NS|
+|NS|
+
+SOUTH-SHORE-ICON ;map icon for South Shore room
+|SS|
+|SS|
+
+LAKE-FLATHEAD-ICON ;map icon for Lake Flathead room
+|LF|
+|LF|
+
+RING-OF-DUNES-ICON ;map icon for Ring of Dunes room
+|RD|
+|RD|
+
+G-U-SAVANNAH-ICON ;map icon for Great Underground Savannah room
+|US|
+|US|
+
+BATS-LAIR-ICON ;map icon for Bat's Lair room
+|BL|
+|BL|
+
+BASE-OF-MT-ICON ;map icon for Base of Mountain room
+|BM|
+|BM|
+
+G-U-MOUNTAIN-ICON ;map icon for Great Underground Mountain room
+|UM|
+|UM|
+
+STABLE-ICON ;map icon for Stable room
+|St|
+|St|
+
+SHRINE-ICON ;map icon for Shrine room
+|Sh|
+|Sh|
+
+CACTUS-PATCH-ICON ;map icon for Cactus Patch room
+|CP|
+|CP|
+
+TALL-DUNES-ICON ;map icon for Tall Dunes room
+|TD|
+|TD|
+
+G-U-OASIS-ICON ;map icon for Great Underground Oasis room
+|UO|
+|UO|
+
+WHARF-ICON ;map icon for Wharf room
+|Wh|
+|Wh|
+
+FISHING-VILLAGE-ICON ;map icon for Fishing Village room
+|FV|
+|FV|
+
+QUILBOZZA-BEACH-ICON ;map icon for Quilbozza Beach room
+|QB|
+|QB|
+
+WARNING-ROOM-ICON ;map icon for Warning Room
+|WR|
+|WR|
+
+FISHY-ODOR-ICON ;map icon for Fishy Odor room
+|FO|
+|FO|
+
+ROOM-OF-3-DOORS-ICON ;map icon for Room of Three Doors room
+|3D|
+|3D|
+
+FORK-ICON ;map icon for Fork room
+|Fo|
+|Fo|
+
+WISHYFOO-ICON ;map icon for Wishyfoo Territory room
+|WT|
+|WT|
+
+REST-STOP-ICON ;map icon for Rest Stop room
+|RS|
+|RS|
+
+CROSSROADS-ICON ;map icon for Crossroads room
+|CR|
+|CR|
+
+TOLL-PLAZA-ICON ;map icon for Toll Plaza room
+|TP|
+|TP|
+
+FISSURES-EDGE-ICON ;map icon for Fissures-Edge room
+|FE|
+|FE|
+
+ORB-ROOM-ICON ;map icon for Orb Room
+|OR|
+|OR|
+
+RUINED-HALL-ICON ;map icon for Ruined Hall room
+|RH|
+|RH|
+
+SECRET-ROOM-ICON ;map icon for Secret Room
+|SR|
+|SR|
+
+HOTHOUSE-ICON ;map icon for Hothouse room
+|HH|
+|HH|
+
+MARSH-ICON ;map icon for Marsh room
+|MA|
+|MA|
+
+CRAG-ICON ;map icon for Crag room
+|Cr|
+|Cr|
+
+UPPER-LEDGE-ICON ;map icon for Upper Ledge room
+|UL|
+|UL|
+
+LOWER-LEDGE-ICON ;map icon for Lower Ledge room
+|LL|
+|LL|
+
+IRON-MINE-ICON ;map icon for Iron Mine room
+|IM|
+|IM|
+
+NATURAL-ARCH-ICON ;map icon for Natural Arch room
+|NA|
+|NA|
+
+ENCHANTED-CAVE-ICON ;map icon for Enchanted Cave room
+|EC|
+|EC|
+
+MIRROR-LAKE-ICON ;map icon for Mirror Lake room
+|ML|
+|ML|
+
+CHALET-ICON ;map icon for Chalet room
+|Ch|
+|Ch|
+
+RIVERS-END-ICON ;map icon for River's End room
+|RE|
+|RE|
+
+OCEANS-EDGE-ICON ;map icon for Ocean's Edge room
+|OE|
+|OE|
+
+DELTA-ICON ;map icon for every (seven) Delta room
+|De|
+|De|
+
+ON-TOP-OF-WORLD-ICON ;map icon for On Top of the World room
+|OW|
+|OW|
+
+AMONGST-CLOUDS-ICON ;map icon for Amongst the Clouds room
+|AC|
+|AC|
+
+TIMBERLINE-ICON ;map icon for Timberline room
+|TL|
+|TL|
+
+AVALANCHE-ICON ;map icon for Avalanche room
+|AV|
+|AV|
+
+ZORBEL-PASS-ICON ;map icon for Zorbel Pass room
+|ZP|
+|ZP|
+
+BASE-OF-MTS-ICON ;map icon for Base of Mountains room
+|BM|
+|BM|
+
+FOOT-OF-STATUE-ICON ;map icon for Foot of Statue room
+|FS|
+|FS|
+
+OUTSIDE-HUT-ICON ;map icon for Outside Hut room
+|OH|
+|OH|
+
+ATTIC-ICON ;map icon for Attic room
+|At|
+|At|
+
+CAIRN-ICON ;map icon for Cairn room
+|Ca|
+|Ca|
+
+QUARRYS-EDGE-ICON ;map icon for Quarry's Edge room
+|QE|
+|QE|
+
+QUARRY-ICON ;map icon for Quarry room
+|Qu|
+|Qu|
+
+STADIUM-ICON ;map icon for Flathead Stadium room
+|FS|
+|FS|
+
+COAST-ROAD-ICON ;map icon for Coast Road room
+|CR|
+|CR|
+
+MINE-ENTRANCE-ICON ;map icon for Mine Entrance room
+|ME|
+|ME|
+
+DEAD-END-ICON ;map icon for Dead End room
+|DE|
+|DE|
+
+CLIFF-BOTTOM-ICON ;map icon for Cliff Bottom room
+|CB|
+|CB|
+
+PRECIPICE-ICON ;map icon for Precipice room
+|Pr|
+|Pr|
+
+AERIE-ICON ;map icon for Aerie room
+|Ae|
+|Ae|
+
+ICKY-CAVE-ICON ;map icon for Icky Cave room
+|IC|
+|IC|
+
+MAP-N-HL ;highlighted NORTH point on map compass rose
+N
+
+MAP-NE-HL ;highlighted NORTHEAST point on map compass rose
+NE
+
+MAP-E-HL ;highlighted EAST point on map compass rose
+E
+
+MAP-SE-HL ;highlighted SOUTHEAST point on map compass rose
+SE
+
+MAP-S-HL ;highlighted SOUTH point on map compass rose
+S
+
+MAP-SW-HL ;highlighted SOUTHWEST point on map compass rose
+SW
+
+MAP-W-HL ;highlighted WEST point on map compass rose
+W
+
+MAP-NW-HL ;highlighted NW point on map compass rose
+NW
+
+MAP-N-UNHL ;unhighlighted NORTH point on map compass rose
+N
+
+MAP-NE-UNHL ;unhighlighted NORTHEAST point on map compass rose
+NE
+
+MAP-E-UNHL ;unhighlighted EAST point on map compass rose
+E
+
+MAP-SE-UNHL ;unhighlighted SOUTHEAST point on map compass rose
+SE
+
+MAP-S-UNHL ;unhighlighted SOUTH point on map compass rose
+S
+
+MAP-SW-UNHL ;unhighlighted SOUTHWEST point on map compass rose
+SW
+
+MAP-W-UNHL ;unhighlighted WEST point on map compass rose
+W
+
+MAP-NW-UNHL ;unhighlighted NW point on map compass rose
+NW
+
+LOBBY-OFFICE-CON ;a longer version of DOWN-NW-SYMBOL
+`.
+  `.
+    `.
+      `.
+
+OFFICE-PENTHOUSE-CON ;a longer version of DOWN-NE-SYMBOL
+      ,'
+    ,'
+  ,'
+,'
+
+LOW-HALL-CON ;a longer version of DOWN-WEST-SYMBOL
+<<<<<<<<
+
+
+WISHYFOO-FORK-CON ;a longer version of DOWN-NORTH-SYMBOL
+ ^  
+ ^  
+ ^  
+ ^  
+ ^  
+ ^  
+ ^  
+ ^  
+
+GLACIER-MIRROR-CON ;a longer version of DOWN-SW-SYMBOL
+      ,'
+    ,'
+  ,'
+,'
+
+DELTA-6-7-CON ;special-case delta maze passage
+ ____
+/,---
+||  
+\`_________
+ `---------
+
+DELTA-1-3-CON ;special-case delta maze passage
+__________
+---------.\
+         ||
+         ||
+         ||
+         ||
+
+DELTA-5-6-CON ;special-case delta maze passage
+    //
+   //
+  //
+ //
+||
+||
+||
+
+DELTA-2-3-CON ;special-case delta maze passage
+ //
+//
+\\
+ \\
+
+DELTA-1-4-CON ;special-case delta maze passage
+_______
+------.\
+      ||
+      ||
+      ||
+      ||
+      ||
+      //
+     //
+
+DELTA-3-5-CON ;special-case delta maze passage
+||
+\ \__
+ `---
+
+PILE-1-PIC-LOC=61x113
+PILE-2-PIC-LOC=61x204
+PILE-3-PIC-LOC=61x295
+PILE-4-PIC-LOC=61x386
+L-FLOWERS-PIC-LOC=21x1
+R-FLOWERS-PIC-LOC=21x505
+B-1-L-PIC-LOC=71x120
+B-2-C-PIC-LOC=81x232
+B-3-R-PIC-LOC=91x344
+B-4-PIC-LOC=101x0
+B-5-PIC-LOC=111x0
+B-6-PIC-LOC=121x0
+F-DISCARD-PIC-LOC=51x29
+F-1-PIC-LOC=51x155
+F-2-PIC-LOC=51x253
+F-3-PIC-LOC=51x351
+F-4-PIC-LOC=51x449
+F-RANK-PIC-LOC=20x14
+F-REV-RANK-PIC-LOC=40x42
+F-SUIT-PIC-LOC=10x14
+F-REV-SUIT-PIC-LOC=50x42
+ENC-PIC-LOC=31x50
+ENC-TXT-LOC=31x274
+ENC-TXT-WINDOW-SIZE=180x238
+COMPASS-PIC-LOC=1x246
+HERE-LOC=11x8
+REGION-LOC=11x540
+F-MENU-LOC=151x78
+J-SCORE-LOC=21x29
+YOUR-SCORE-LOC=21x442
+TEXT-WINDOW-PIC-LOC=41x0
+PBOZ-H-LOC=61x302
+PBOZ-I-LOC=71x232
+PBOZ-J-LOC=71x260
+PBOZ-K-LOC=71x288
+PBOZ-L-LOC=71x316
+PBOZ-M-LOC=81x190
+PBOZ-N-LOC=81x218
+PBOZ-O-LOC=81x246
+PBOZ-P-LOC=81x274
+PBOZ-Q-LOC=81x302
+PBOZ-R-LOC=81x330
+PBOZ-S-LOC=81x358
+PBOZ-T-LOC=91x204
+PBOZ-U-LOC=91x344
+PBOZ-SPLIT=150x0
+MAP-TOP-LEFT-LOC=21x57
+MAP-BASIC-ELT-SIZE=30x42
+MAP-BOX-SIZE=20x28
+MAP-SPACE-SIZE=10x14
+GONDOLA-AT-FLATHEADIA-LOC=121x0
+5-FUDGE=5x5
+GONDOLA-AT-FENSHIRE-LOC=51x0
+ARCH-N-CON-SIZE=20x0
+RUBBLE-CON-SIZE=30x35
+2-3-CON-SIZE=0x14
+3-5-CON-SIZE=0x35
+5-6-CON-SIZE=0x35
+6-7-CON-SIZE=0x77
+TELEPORT-ARROW-SIZE=30x0
+WISHYFOO-ICON-LOC=181x0
+EAR-ICON-LOC=0x295
+F-DISCARD-LOC=121x43
+F-CARD-1-LOC=121x190
+F-CARD-SPACE=0x98
+F-SPLIT=180x0
+F-BOTTOM=10x0
+PBOZ-BOTTOM=10x0
+SN-BOTTOM=10x0
+B-BOTTOM=10x0
+SN-SPLIT=180x0
+B-SPLIT=180x0
+URS-ICON-LOC=0x217
+COURTROOM-ICON-LOC=0x329
+MAIN-TITLE-LOC=0x260
+PBOZ-A-LOC=31x260
+PBOZ-B-LOC=31x288
+PBOZ-C-LOC=41x274
+PBOZ-D-LOC=51x260
+PBOZ-E-LOC=51x288
+PBOZ-F-LOC=61x246
+PBOZ-G-LOC=61x274
+LAKE-TITLE-LOC=120x196
+TELEPORT-LETTER ;illuminated letter at first oracle teleport
+|---\
+|    |
+|    |
+|___/
+
+SECRET-WING-TITLE-LOC=25x0
+MAP-ROSE-BG ;compass rose for on-screen maps
+   N
+  \|/
+W--+--E
+  /|\
+   S
+
+MAP-ROSE-LOC=1x260
+MAP-COMPASS-PIC-LOC=1x260
+BOX-1 ;dialog box 1 for snarfem
++-----+
+|  1  |
++-----+
+
+BOX-2 ;dialog box 2 for snarfem
++-----+
+|  2  |
++-----+
+
+BOX-3 ;dialog box 3 for snarfem
++-----+
+|  3  |
++-----+
+
+BOX-4 ;dialog box 4 for snarfem
++-----+
+|  4  |
++-----+
+
+BOX-5 ;dialog box 5 for snarfem
++-----+
+|  5  |
++-----+
+
+BOX-6 ;dialog box 6 for snarfem
++-----+
+|  6  |
++-----+
+
+BOX-7 ;dialog box 7 for snarfem
++-----+
+|  7  |
++-----+
+
+BOX-8 ;dialog box 8 for snarfem
++-----+
+|  8  |
++-----+
+
+BOX-9 ;dialog box 9 for snarfem
++-----+
+|  9  |
++-----+
+
+DIM-BOX-1 ;screened dialog box 1 for snarfem
++-----+
+|  1  |
++-----+
+
+DIM-BOX-2 ;screened dialog box 2 for snarfem
++-----+
+|  2  |
++-----+
+
+DIM-BOX-3 ;screened dialog box 3 for snarfem
++-----+
+|  3  |
++-----+
+
+DIM-BOX-4 ;screened dialog box 4 for snarfem
++-----+
+|  4  |
++-----+
+
+DIM-BOX-5 ;screened dialog box 5 for snarfem
++-----+
+|  5  |
++-----+
+
+DIM-BOX-6 ;screened dialog box 6 for snarfem
++-----+
+|  6  |
++-----+
+
+DIM-BOX-7 ;screened dialog box 7 for snarfem
++-----+
+|  7  |
++-----+
+
+DIM-BOX-8 ;screened dialog box 8 for snarfem
++-----+
+|  8  |
++-----+
+
+DIM-BOX-9 ;screened dialog box 9 for snarfem
++-----+
+|  9  |
++-----+
+
+EXIT-BOX ;exit dialog box
++----------+
+|   EXIT   |
++----------+
+
+SHOW-MOVES-BOX ;show moves dialog box
++----------+
+|SHOW MOVES|
++----------+
+
+UNDO-BOX ;undo dialog box
++----------+
+|   UNDO   |
++----------+
+
+RESTART-BOX ;restart dialog box
++----------+
+| RESTART  |
++----------+
+
+DIM-SHOW-MOVES-BOX ;screened show moves dialog box
++----------+
+|SHOW MOVES|
++----------+
+
+DIM-UNDO-BOX ;screened undo dialog box
++----------+
+|   UNDO   |
++----------+
+
+DIM-RESTART-BOX ;screend restart dialog box
++----------+
+| RESTART  |
++----------+
+
+BOX-1-LOC=151x1
+SN-BOX-SPACE=0x8
+PBOZ-RESTART-BOX-LOC=11x1
+PBOZ-SHOW-MOVES-BOX-LOC=41x1
+PBOZ-EXIT-BOX-LOC=71x1
+TOWER-UNDO-BOX-LOC=11x1
+TOWER-EXIT-BOX-LOC=11x470
+EXPAND-HOT-SPOT=1x1
+ICON-OFFSET=0x0
+U-BOX ;indicates UP on status line
++-+
+|U|
++-+
+
+D-BOX ;indicates DOWN on status line
++-+
+|D|
++-+
+
+BOX-COVER ;covers UP and DOWN boxes on status line
++-+
+| |
++-+
+
+U-BOX-LOC=11x211
+D-BOX-LOC=11x316
